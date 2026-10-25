@@ -62,9 +62,10 @@ Vorbild: Instagram-Reels von „business.framwork“ (siehe `bilder/`). Dort ist
 | Was | Status | Link |
 |---|---|---|
 | Miro-Connector | verbunden (claude.ai) | – |
-| Miro-Board „AUROB Framework – Demo“ | angelegt, **leer** | https://miro.com/app/board/uXjVEVyVTQo=/ |
+| Miro-Board „AUROB Framework – Demo“ | Firmenkarte + 10 Bereichskarten mit Raster (Stand 25.10.2026) | https://miro.com/app/board/uXjVEVyVTQo=/ |
 | Notion-Testseite „AUROB Framework – Demo (Testseite)“ | angelegt, privat | https://app.notion.com/p/4049ed7d062281939737efd1c7f3a94a |
-| Oberbereiche | **offen**, Vorschlag unten | – |
+| Oberbereiche | **bestätigt** (10 Bereiche, siehe Abschnitt 5) | – |
+| find-skills | als Projekt-Skill in `.claude/skills/find-skills/` | – |
 
 ---
 
@@ -76,7 +77,7 @@ Ibrahims Vorgabe:
 - Fulfillment, Vertrieb und Marketing sind getrennte Oberbereiche.
 - Unter jedem Oberbereich folgen später viele Unterbegriffe.
 
-Claudes Vorschlag (noch **nicht** bestätigt):
+Bestätigt am 25.10.2026 (Innovation gehört zu Führung & Strategie):
 
 1. Führung & Strategie – Vision, Ziele, Organisation
 2. Marketing – Sichtbarkeit, Website, Leads
@@ -88,11 +89,10 @@ Claudes Vorschlag (noch **nicht** bestätigt):
 8. Personal – Recruiting, Einarbeitung, Schulung
 9. IT & Systeme – Software, Daten, Automatisierung
 10. Recht & Verwaltung – Verträge, Versicherungen, Rechtsform
-11. (optional) Innovation & Produktentwicklung
 
-Nächster Schritt: Ibrahim streicht, benennt um oder ergänzt.
+Umbenannt: „Fulfillment“ heißt jetzt „Leistungserbringung“.
 
-Raster pro Bereichskarte (Idee, nicht bestätigt): Ziel, Verantwortlich, Tools, Kernprozesse, KPIs, Schnittstellen.
+Raster pro Bereichskarte (bestätigt): Ziel, Verantwortlich, Tools, Kernprozesse, KPIs, Schnittstellen.
 
 ---
 
