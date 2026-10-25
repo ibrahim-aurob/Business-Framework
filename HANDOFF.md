@@ -106,6 +106,23 @@ Raster pro Bereichskarte (bestätigt): Ziel, Verantwortlich, Tools, Kernprozesse
 - Eine Automation gehört zu dem Prozess, den sie automatisiert. Technik und Wartung: IT & Systeme.
 - Auf Miro steht jeder Prozess als eigener Frame unter seiner Bereichskarte.
 
+## 5b. Neue Vorgehensweise: Prozesse zuerst (ab 25.10.2026)
+
+Ibrahim denkt in Prozessen, nicht in Abteilungen.
+1. Ibrahim beschreibt alle Prozesse, ungeordnet. Auch nur ein Name reicht.
+2. Claude legt **jeden** Prozess sofort in der Notion-Datenbank „Prozesse“ an. Ohne Details: Status „Roh“.
+3. Claude ergänzt typische fehlende Prozesse nur nach Rückfrage.
+4. Erst am Ende entstehen **Kategorien** aus den Prozessen (keine klassischen Abteilungen).
+5. Danach wird Miro/Notion nach den Kategorien umgebaut. Die 10 Bereiche bleiben bis dahin stehen.
+
+Ziel: 80 % der Prozesse laufen über Trigger automatisch (n8n). Ein „Jarvis“ stößt nur die übrigen 20 % an.
+
+### Felder in „Prozesse“
+Prozess, ID (PRZ-n), Status (Roh / Entwurf / In Prüfung / Gültig), Auslöser, Auslöser-Typ (Ereignis / Zeitplan / Manuell / Unklar), Ziel, Häufigkeit, Verantwortlich, Tools, Automatisierung (Manuell / Teilweise / Voll), Vorgänger / Nachfolger (Prozesskette), Automationen, Kategorie (später).
+
+### Seitenvorlage pro Prozess
+Auslöser · Eingaben · Schritte (Nr, Schritt, Wer, Tool, n8n) · Ziel/Ergebnis · Ausnahmen · Automatisierung · Offene Fragen
+
 ## 6. Skills: find-skills (vercel-labs/skills)
 
 Repo: https://github.com/vercel-labs/skills (MIT-Lizenz)
