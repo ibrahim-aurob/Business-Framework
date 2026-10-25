@@ -65,6 +65,8 @@ Vorbild: Instagram-Reels von „business.framwork“ (siehe `bilder/`). Dort ist
 | Miro-Board „AUROB Framework – Demo“ | Firmenkarte + 10 Bereichskarten mit Raster (Stand 25.10.2026) | https://miro.com/app/board/uXjVEVyVTQo=/ |
 | Notion-Testseite „AUROB Framework – Demo (Testseite)“ | angelegt, privat | https://app.notion.com/p/4049ed7d062281939737efd1c7f3a94a |
 | Notion „AUROB Business-Framework“ (privat, getrennt) | Hauptseite + Datenbank „Bereiche“ mit 10 Seiten | https://app.notion.com/p/4049ed7d062281a99a63ebcc48c42b74 |
+| Notion-Datenbanken | Bereiche, Prozesse, Automationen (n8n), Tools – miteinander verknüpft | unter der Notion-Hauptseite |
+| Musterprozess | PRZ-1 „Anfrage bis Angebot“ (Entwurf): Notion-SOP + Ablauf auf Miro unter Vertrieb | – |
 | Oberbereiche | **bestätigt** (10 Bereiche, siehe Abschnitt 5) | – |
 | find-skills | als Projekt-Skill in `.claude/skills/find-skills/` | – |
 
@@ -96,6 +98,13 @@ Umbenannt: „Fulfillment“ heißt jetzt „Leistungserbringung“.
 Raster pro Bereichskarte (bestätigt): Ziel, Verantwortlich, Tools, Kernprozesse, KPIs, Schnittstellen.
 
 ---
+
+## 5a. Struktur für Prozesse und n8n (bestätigt)
+
+- Bereich → Prozess → Schritt → Automation (n8n). Tools hängen an jeder Ebene.
+- Ein Prozess gehört zu genau einem Bereich. Andere Bereiche stehen unter „Schnittstellen“.
+- Eine Automation gehört zu dem Prozess, den sie automatisiert. Technik und Wartung: IT & Systeme.
+- Auf Miro steht jeder Prozess als eigener Frame unter seiner Bereichskarte.
 
 ## 6. Skills: find-skills (vercel-labs/skills)
 
