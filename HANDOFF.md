@@ -67,6 +67,7 @@ Vorbild: Instagram-Reels von „business.framwork“ (siehe `bilder/`). Dort ist
 | Notion „AUROB Business-Framework“ (privat, getrennt) | Hauptseite + Datenbank „Bereiche“ mit 10 Seiten | https://app.notion.com/p/4049ed7d062281a99a63ebcc48c42b74 |
 | Notion-Datenbanken | Bereiche, Prozesse, Automationen (n8n), Tools – miteinander verknüpft | unter der Notion-Hauptseite |
 | Musterprozess | PRZ-1 „Anfrage bis Angebot“ (Entwurf): Notion-SOP + Ablauf auf Miro unter Vertrieb | – |
+| Prozess-Inventar | 17 Prozesse in Notion (16 aus aktiven n8n-Workflows, Status Entwurf) + 18 Automationen mit n8n-ID | Datenbank „Prozesse“ |
 | Oberbereiche | **bestätigt** (10 Bereiche, siehe Abschnitt 5) | – |
 | find-skills | als Projekt-Skill in `.claude/skills/find-skills/` | – |
 
