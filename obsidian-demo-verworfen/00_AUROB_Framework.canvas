@@ -1,0 +1,19 @@
+{
+  "nodes": [
+    {"id":"firma","type":"text","text":"# AUROB\nCNC-Fertigung Lünen\n\nZiel: Serienteile Alu, Stahl, Edelstahl","x":-160,"y":-420,"width":320,"height":160,"color":"6"},
+    {"id":"vertrieb","type":"file","file":"Bereiche/Vertrieb.md","x":-760,"y":-140,"width":400,"height":360,"color":"4"},
+    {"id":"kalk","type":"file","file":"Bereiche/Kalkulation.md","x":-200,"y":-140,"width":400,"height":360,"color":"3"},
+    {"id":"fert","type":"file","file":"Bereiche/Fertigung.md","x":360,"y":-140,"width":400,"height":360,"color":"5"},
+    {"id":"proz","type":"file","file":"Prozesse/Anfrage bis Angebot.md","x":-480,"y":320,"width":480,"height":320},
+    {"id":"tool","type":"file","file":"Tools/Lager-ERP.md","x":360,"y":320,"width":400,"height":240},
+    {"id":"notiz","type":"text","text":"Doppelklick auf eine Karte = Notiz öffnen.\nMausrad = zoomen.","x":-760,"y":-420,"width":320,"height":120,"color":"1"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"firma","fromSide":"bottom","toNode":"vertrieb","toSide":"top"},
+    {"id":"e2","fromNode":"firma","fromSide":"bottom","toNode":"kalk","toSide":"top"},
+    {"id":"e3","fromNode":"firma","fromSide":"bottom","toNode":"fert","toSide":"top"},
+    {"id":"e4","fromNode":"vertrieb","fromSide":"bottom","toNode":"proz","toSide":"top","label":"Anfrage"},
+    {"id":"e5","fromNode":"proz","fromSide":"right","toNode":"kalk","toSide":"bottom","label":"Preis"},
+    {"id":"e6","fromNode":"fert","fromSide":"bottom","toNode":"tool","toSide":"top","label":"nutzt"}
+  ]
+}
