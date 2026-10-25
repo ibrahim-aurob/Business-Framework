@@ -17,4 +17,5 @@ Lies zuerst `HANDOFF.md`. Dort stehen Ziel, Entscheidungen, Stand und Verlauf.
 
 ## Links
 - Miro-Board: https://miro.com/app/board/uXjVEVyVTQo=/
+- Notion-Framework: https://app.notion.com/p/4049ed7d062281a99a63ebcc48c42b74
 - Notion-Testseite: https://app.notion.com/p/4049ed7d062281939737efd1c7f3a94a

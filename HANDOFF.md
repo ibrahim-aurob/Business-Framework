@@ -64,6 +64,7 @@ Vorbild: Instagram-Reels von „business.framwork“ (siehe `bilder/`). Dort ist
 | Miro-Connector | verbunden (claude.ai) | – |
 | Miro-Board „AUROB Framework – Demo“ | Firmenkarte + 10 Bereichskarten mit Raster (Stand 25.10.2026) | https://miro.com/app/board/uXjVEVyVTQo=/ |
 | Notion-Testseite „AUROB Framework – Demo (Testseite)“ | angelegt, privat | https://app.notion.com/p/4049ed7d062281939737efd1c7f3a94a |
+| Notion „AUROB Business-Framework“ (privat, getrennt) | Hauptseite + Datenbank „Bereiche“ mit 10 Seiten | https://app.notion.com/p/4049ed7d062281a99a63ebcc48c42b74 |
 | Oberbereiche | **bestätigt** (10 Bereiche, siehe Abschnitt 5) | – |
 | find-skills | als Projekt-Skill in `.claude/skills/find-skills/` | – |
 
