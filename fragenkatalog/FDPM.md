@@ -13,3 +13,4 @@ Status: Sammlung (roh). Daraus entsteht am Ende der Fragenkatalog.
 | 6 | Bahn / Sterne | Ändern wir die mittleren Teile mit oder nicht? | Entscheidung offen. |
 | 7 | Material | Warum fertigen wir aus Aluminium? | Erklärung für den Kunden. |
 | 8 | Arbeitshöhe | Wir haben die Arbeitshöhe angenommen. Wir müssen sie dem Kunden mitteilen. Passt sie für den Kunden? | ca. 965 mm ± 40 mm, einstellbar über die Füße. |
+| 9 | Verbindungselemente | Welche Verbindungselemente nutzt Firma Pohlmann beim item-System? Wir fragen das für alle Profile. | Optionen: Winkel, Direktverbindung, Sonstiges. |
