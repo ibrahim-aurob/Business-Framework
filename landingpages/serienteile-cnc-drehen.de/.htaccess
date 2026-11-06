@@ -1,0 +1,49 @@
+# serienteile-cnc-drehen.de – all-inkl (Apache)
+
+RewriteEngine On
+
+# HTTPS und ohne www
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://serienteile-cnc-drehen.de%{REQUEST_URI} [L,R=301]
+
+# Interne Ordner sperren
+RewriteRule ^(inc|src)(/|$) - [F,L]
+<FilesMatch "\.(md|py)$">
+  Require all denied
+</FilesMatch>
+
+# Upload-Grenzen für das Anfrageformular (wirkt nur, wenn PHP als Modul läuft;
+# sonst im KAS unter "PHP-Einstellungen" setzen)
+<IfModule mod_php.c>
+  php_value upload_max_filesize 20M
+  php_value post_max_size 25M
+  php_value max_file_uploads 5
+</IfModule>
+
+# Caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType application/pdf "access plus 1 week"
+</IfModule>
+AddType font/woff2 .woff2
+
+# Kompression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>
+
+# Sicherheit
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+Options -Indexes

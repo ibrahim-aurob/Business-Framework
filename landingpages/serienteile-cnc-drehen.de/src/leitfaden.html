@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Drehteile günstiger konstruieren – AUROB Leitfaden</title>
+<style>
+@font-face { font-family: "Archivo"; src: url("../assets/fonts/archivo-var.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; }
+@font-face { font-family: "Plex Mono"; src: url("../assets/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Plex Mono"; src: url("../assets/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+@page { size: A4; margin: 0; }
+:root { --ink:#15171a; --ink2:#3b4047; --steel:#6b727b; --rule:#cfcac0; --sig:#e2520f; --paper:#fbfaf7; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Archivo, Arial, sans-serif; color: var(--ink); font-size: 11.8pt; line-height: 1.55; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.p { width: 210mm; height: 297mm; padding: 16mm 16mm 0; position: relative; page-break-after: always; background: var(--paper); overflow: hidden; }
+.p:last-child { page-break-after: auto; }
+.frame { position: absolute; inset: 8mm; border: 0.6pt solid var(--ink); pointer-events: none; }
+.mono { font-family: "Plex Mono", monospace; }
+.k { font-family: "Plex Mono", monospace; font-size: 8pt; letter-spacing: .1em; text-transform: uppercase; color: var(--steel); }
+.k b { color: var(--sig); font-weight: 500; }
+h1 { font-size: 46pt; line-height: .95; font-variation-settings: "wdth" 78; font-weight: 800; letter-spacing: -.02em; margin: 10mm 0 6mm; }
+h1 em { font-style: normal; color: var(--sig); }
+h2 { font-size: 21pt; font-variation-settings: "wdth" 82; line-height: 1.02; margin: 4mm 0 5mm; letter-spacing: -.01em; }
+.lever { display: grid; grid-template-columns: 16mm 1fr; border-top: 0.8pt solid var(--ink); padding: 7mm 0 6mm; }
+.lever .n { font-family: "Plex Mono", monospace; font-size: 18pt; color: var(--sig); line-height: 1; }
+.lever h3 { margin: 0 0 2.4mm; font-size: 15pt; font-variation-settings: "wdth" 90; }
+.lever p { margin: 0 0 1.6mm; color: var(--ink2); }
+.lever .tip { font-family: "Plex Mono", monospace; font-size: 9.2pt; color: var(--ink); background: #ece8df; padding: 1.6mm 2.4mm; display: inline-block; }
+.tb { position: absolute; left: 8mm; right: 8mm; bottom: 8mm; display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; border-top: 0.6pt solid var(--ink); font-size: 8pt; }
+.tb div { padding: 2mm 3mm; border-right: 0.6pt solid var(--ink); }
+.tb div:last-child { border-right: 0; }
+.tb span { display: block; font-family: "Plex Mono", monospace; font-size: 6.5pt; text-transform: uppercase; letter-spacing: .1em; color: var(--steel); }
+.lead { font-size: 13pt; color: var(--ink2); max-width: 140mm; }
+table { width: 100%; border-collapse: collapse; margin-top: 4mm; }
+td { border-bottom: 0.5pt solid var(--rule); padding: 4.2mm 0; vertical-align: top; }
+td.box { width: 9mm; } td.box i { display: inline-block; width: 4mm; height: 4mm; border: 0.8pt solid var(--ink); margin-top: .6mm; }
+td.w { color: var(--steel); font-family: "Plex Mono", monospace; font-size: 8.4pt; text-align: right; width: 50mm; }
+.cta { margin-top: 9mm; border: 1.2pt solid var(--ink); padding: 6mm; display: grid; grid-template-columns: 1fr auto; gap: 6mm; align-items: center; }
+.cta b { font-size: 15pt; font-variation-settings: "wdth" 85; display: block; line-height: 1.1; }
+.cta .btn { background: var(--sig); color: #fff; font-weight: 600; padding: 3.5mm 5mm; font-size: 11pt; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- Seite 1 – Titel -->
+<section class="p">
+  <div class="frame"></div>
+  <div class="k" style="margin-top:6mm"><b>●</b> AUROB Leitfaden · Ausgabe 2026</div>
+  <h1>Drehteile<br><em>günstiger</em><br>konstruieren.</h1>
+  <p class="lead">12 Hebel, mit denen Konstrukteure und Einkäufer den Stückpreis von Serien-Drehteilen senken – ohne Abstriche bei der Funktion.</p>
+  <div style="position:absolute;left:16mm;right:16mm;top:150mm">
+    {{HERO_SVG}}
+  </div>
+  <div class="tb"><div><span>Hersteller</span>AUROB</div><div><span>Benennung</span>Leitfaden Drehteil-Kosten</div><div><span>Blatt</span>1 / 8</div><div><span>Web</span>serienteile-cnc-drehen.de</div></div>
+</section>
+
+<!-- Seite 2 – Wo die Kosten entstehen -->
+<section class="p">
+  <div class="frame"></div>
+  <div class="k" style="margin-top:6mm"><b>00</b> Vorab</div>
+  <h2>Wo der Preis eines Drehteils entsteht.</h2>
+  <p class="lead">Der Stückpreis setzt sich aus vier Blöcken zusammen. Die Zeichnung bestimmt jeden davon.</p>
+  <table>
+    <tr><td style="width:42mm"><b>Material</b></td><td>Werkstoff, Stangendurchmesser, Verschnitt. Bei einfachen Teilen oft der größte Block.</td></tr>
+    <tr><td><b>Rüsten</b></td><td>Programm, Werkzeuge, Erstteil-Prüfung. Fällt je Los einmal an und verteilt sich auf die Stückzahl.</td></tr>
+    <tr><td><b>Bearbeitungszeit</b></td><td>Zerspanvolumen, Anzahl der Werkzeuge, Toleranzen, Oberflächengüte, Nebenoperationen wie Querbohrungen.</td></tr>
+    <tr><td><b>Nachbehandlung</b></td><td>Oberfläche, Wärmebehandlung, Entgraten, Prüfung, Verpackung, Transport.</td></tr>
+  </table>
+  <p style="margin-top:8mm">Die meisten Kosten legt die Konstruktion fest, lange bevor ein Span fällt. Darum lohnt sich ein kritischer Blick auf die Zeichnung. Die folgenden 12 Hebel stammen aus der täglichen Angebotsarbeit.</p>
+  <div class="cta" style="margin-top:14mm"><div><span class="k">So lesen Sie diesen Leitfaden</span><b>Jeder Hebel: Was kostet Geld – und was Sie stattdessen tun.</b></div><span class="mono" style="font-size:22pt;color:var(--sig)">→</span></div>
+  <div class="tb"><div><span>Hersteller</span>AUROB</div><div><span>Benennung</span>Leitfaden Drehteil-Kosten</div><div><span>Blatt</span>2 / 8</div><div><span>Web</span>serienteile-cnc-drehen.de</div></div>
+</section>
+
+<!-- Seite 3 – Hebel 1–4 -->
+<section class="p">
+  <div class="frame"></div>
+  <div class="k" style="margin-top:6mm"><b>01–04</b> Toleranz, Oberfläche, Material</div>
+  <h2>Genauigkeit nur dort, wo sie gebraucht wird.</h2>
+  <div class="lever"><span class="n">01</span><div><h3>Toleranzen gezielt vergeben</h3><p>Jede enge Toleranz kostet Zeit: langsamer schlichten, öfter messen, mehr Ausschuss. Oft steht IT6 auf Maßen ohne Funktion.</p><span class="tip">→ Allgemeintoleranz ISO 2768-m angeben. Enge Toleranzen nur an Passungen.</span></div></div>
+  <div class="lever"><span class="n">02</span><div><h3>Rauheit realistisch wählen</h3><p>Ra 0,8 statt Ra 3,2 kann einen zusätzlichen Schlichtgang oder Schleifen bedeuten.</p><span class="tip">→ Ra 3,2 als Standard. Feinere Werte nur an Dicht- und Laufflächen.</span></div></div>
+  <div class="lever"><span class="n">03</span><div><h3>Gut zerspanbaren Werkstoff wählen</h3><p>Automatenstahl, Messing und Aluminium lassen sich deutlich schneller drehen als 1.4404 oder Titan. Der Werkstoff beeinflusst Schnittwerte und Werkzeugverschleiß.</p><span class="tip">→ Wo Korrosion es erlaubt: 1.4305 statt 1.4404, 1.0718 statt C45.</span></div></div>
+  <div class="lever"><span class="n">04</span><div><h3>Standard-Stangendurchmesser nutzen</h3><p>Ein Außendurchmesser von Ø 20,5 mm braucht Ø 22er Stangenmaterial. Mehr Material, mehr Zerspanung.</p><span class="tip">→ Größten Ø knapp unter ein Normmaß legen, z. B. Ø 19,8 aus Ø 20 blank.</span></div></div>
+  <div class="tb"><div><span>Hersteller</span>AUROB</div><div><span>Benennung</span>Leitfaden Drehteil-Kosten</div><div><span>Blatt</span>3 / 8</div><div><span>Web</span>serienteile-cnc-drehen.de</div></div>
+</section>
+
+<!-- Seite 4 – Hebel 5–8 -->
+<section class="p">
+  <div class="frame"></div>
+  <div class="k" style="margin-top:6mm"><b>05–08</b> Geometrie</div>
+  <h2>Formen, die das Werkzeug schon kennt.</h2>
+  <div class="lever"><span class="n">05</span><div><h3>Radien passend zur Schneidplatte</h3><p>Scharfe Innenecken oder krumme Radien erfordern Sonderwerkzeuge oder zusätzliche Schnitte.</p><span class="tip">→ Innenradien R0,2 / R0,4 / R0,8 – passend zu Standard-Wendeplatten.</span></div></div>
+  <div class="lever"><span class="n">06</span><div><h3>Einstiche und Freistiche nach Norm</h3><p>Sonderbreiten und -tiefen bedeuten Sonder-Stechwerkzeuge.</p><span class="tip">→ Freistiche nach DIN 509, Einstichbreiten in ganzen Millimetern.</span></div></div>
+  <div class="lever"><span class="n">07</span><div><h3>Gewinde mit Auslauf</h3><p>Gewinde bis zur Schulter oder tiefe Sacklochgewinde kosten Zeit und erhöhen das Bruchrisiko des Gewindebohrers.</p><span class="tip">→ Regelgewinde, Gewindefreistich DIN 76, Gewindetiefe max. 1,5 × d.</span></div></div>
+  <div class="lever"><span class="n">08</span><div><h3>Bohrungen nicht zu tief</h3><p>Ab einem Verhältnis Tiefe zu Durchmesser von etwa 5 : 1 wird es langsam: Entspanen, Sonderbohrer, Prüfaufwand.</p><span class="tip">→ Bohrungsgrund mit 118°-Spitze statt flach. Tiefe so kurz wie möglich.</span></div></div>
+  <div class="tb"><div><span>Hersteller</span>AUROB</div><div><span>Benennung</span>Leitfaden Drehteil-Kosten</div><div><span>Blatt</span>4 / 8</div><div><span>Web</span>serienteile-cnc-drehen.de</div></div>
+</section>
+
+<!-- Seite 5 – Hebel 9–12 -->
+<section class="p">
+  <div class="frame"></div>
+  <div class="k" style="margin-top:6mm"><b>09–12</b> Prozess &amp; Bestellung</div>
+  <h2>Weniger Operationen, besser verteilte Rüstkosten.</h2>
+  <div class="lever"><span class="n">09</span><div><h3>Nebenoperationen bündeln</h3><p>Querbohrungen, Schlüsselflächen und Nuten brauchen angetriebene Werkzeuge. Jede zusätzliche Operation verlängert die Taktzeit.</p><span class="tip">→ Querbohrungen auf eine Ebene legen. Schlüsselweiten nach Norm.</span></div></div>
+  <div class="lever"><span class="n">10</span><div><h3>Kantenangaben pauschal</h3><p>Einzelne Fasen an jeder Kante vermaßen kostet Programmierzeit und Prüfaufwand.</p><span class="tip">→ „Alle Kanten gebrochen 0,2 × 45°“ als Pauschalangabe nach ISO 13715.</span></div></div>
+  <div class="lever"><span class="n">11</span><div><h3>Rüstkosten verteilen</h3><p>Ob 100 oder 1.000 Stück: Das Rüsten kostet etwa gleich viel. Bei kleinen Losen frisst es den Stückpreis.</p><span class="tip">→ Jahresbedarf nennen. Rahmenauftrag mit Abrufen statt Einzelbestellungen.</span></div></div>
+  <div class="lever"><span class="n">12</span><div><h3>Oberfläche früh festlegen</h3><p>Eloxal- und Zinkschichten tragen auf. Ohne Angabe muss nachgearbeitet oder abgedeckt werden.</p><span class="tip">→ Schichtdicke und „Maße vor / nach Beschichtung“ auf die Zeichnung.</span></div></div>
+  <div class="tb"><div><span>Hersteller</span>AUROB</div><div><span>Benennung</span>Leitfaden Drehteil-Kosten</div><div><span>Blatt</span>5 / 8</div><div><span>Web</span>serienteile-cnc-drehen.de</div></div>
+</section>
+
+<!-- Seite 6 – Schnellcheck -->
+<section class="p">
+  <div class="frame"></div>
+  <div class="k" style="margin-top:6mm"><b>Schnellcheck</b> Zeichnung in 5 Minuten prüfen</div>
+  <h2>Bevor die Zeichnung rausgeht.</h2>
+  <table>
+    <tr><td class="box"><i></i></td><td>Haben nur Funktionsmaße enge Toleranzen?</td><td class="w">Hebel 01</td></tr>
+    <tr><td class="box"><i></i></td><td>Ist Ra 3,2 der Standard, feinere Werte nur an Funktionsflächen?</td><td class="w">Hebel 02</td></tr>
+    <tr><td class="box"><i></i></td><td>Ist der Werkstoff gut zerspanbar – oder bewusst so gewählt?</td><td class="w">Hebel 03</td></tr>
+    <tr><td class="box"><i></i></td><td>Passt der größte Durchmesser zu einem Normmaß der Stange?</td><td class="w">Hebel 04</td></tr>
+    <tr><td class="box"><i></i></td><td>Passen die Innenradien zu Standard-Schneidplatten?</td><td class="w">Hebel 05</td></tr>
+    <tr><td class="box"><i></i></td><td>Sind Frei- und Einstiche genormt?</td><td class="w">Hebel 06</td></tr>
+    <tr><td class="box"><i></i></td><td>Haben Gewinde einen Auslauf und begrenzte Tiefe?</td><td class="w">Hebel 07</td></tr>
+    <tr><td class="box"><i></i></td><td>Sind Bohrungen kürzer als 5 × Durchmesser?</td><td class="w">Hebel 08</td></tr>
+    <tr><td class="box"><i></i></td><td>Liegen Querbohrungen und Flächen auf möglichst wenigen Ebenen?</td><td class="w">Hebel 09</td></tr>
+    <tr><td class="box"><i></i></td><td>Gibt es eine pauschale Kantenangabe?</td><td class="w">Hebel 10</td></tr>
+    <tr><td class="box"><i></i></td><td>Ist der Jahresbedarf bekannt und in der Anfrage genannt?</td><td class="w">Hebel 11</td></tr>
+    <tr><td class="box"><i></i></td><td>Sind Oberfläche und Schichtdicke festgelegt?</td><td class="w">Hebel 12</td></tr>
+  </table>
+  <div class="tb"><div><span>Hersteller</span>AUROB</div><div><span>Benennung</span>Leitfaden Drehteil-Kosten</div><div><span>Blatt</span>6 / 8</div><div><span>Web</span>serienteile-cnc-drehen.de</div></div>
+</section>
+
+<!-- Seite 7 – Checkliste Anfrage -->
+<section class="p">
+  <div class="frame"></div>
+  <div class="k" style="margin-top:6mm"><b>Checkliste</b> Die vollständige Anfrage</div>
+  <h2>Was in eine Anfrage gehört – damit das Angebot sofort passt.</h2>
+  <p class="lead">Fehlende Angaben sind der häufigste Grund für Rückfragen und Verzögerungen.</p>
+  <table>
+    <tr><td class="box"><i></i></td><td><b>Zeichnung als PDF</b> – mit Toleranzen, Rauheit, Werkstoff</td><td class="w">Pflicht</td></tr>
+    <tr><td class="box"><i></i></td><td><b>3D-Modell als STEP</b> – beschleunigt die Programmierung</td><td class="w">empfohlen</td></tr>
+    <tr><td class="box"><i></i></td><td><b>Stückzahl je Los</b> und <b>Jahresbedarf</b></td><td class="w">Pflicht</td></tr>
+    <tr><td class="box"><i></i></td><td><b>Werkstoff</b> mit Werkstoffnummer, ggf. Zeugnis (z. B. 3.1)</td><td class="w">Pflicht</td></tr>
+    <tr><td class="box"><i></i></td><td><b>Oberfläche</b> und Wärmebehandlung</td><td class="w">falls nötig</td></tr>
+    <tr><td class="box"><i></i></td><td><b>Wunschtermin</b> und Lieferadresse</td><td class="w">empfohlen</td></tr>
+    <tr><td class="box"><i></i></td><td><b>Prüfanforderungen</b> – Erstmusterprüfbericht, Messprotokoll</td><td class="w">falls nötig</td></tr>
+    <tr><td class="box"><i></i></td><td><b>Verpackung</b> – lose, KLT, einzeln verpackt</td><td class="w">optional</td></tr>
+  </table>
+  <div class="cta"><div><span class="k">Alles beisammen?</span><b>Laden Sie Ihre Zeichnung hoch. Stückpreis in 48 Stunden.</b></div><a class="btn" href="https://serienteile-cnc-drehen.de/#anfrage">Zur Anfrage →</a></div>
+  <div class="tb"><div><span>Hersteller</span>AUROB</div><div><span>Benennung</span>Leitfaden Drehteil-Kosten</div><div><span>Blatt</span>7 / 8</div><div><span>Web</span>serienteile-cnc-drehen.de</div></div>
+</section>
+
+<!-- Seite 8 – Angebot -->
+<section class="p">
+  <div class="frame"></div>
+  <div class="k" style="margin-top:6mm"><b>AUROB</b> Serien-Drehteile</div>
+  <h2 style="font-size:30pt;max-width:150mm">Sie schicken die Zeichnung. Wir liefern das fertige Teil.</h2>
+  <table>
+    <tr><td style="width:50mm"><b>Losgröße</b></td><td class="mono">ab 100 Stück</td></tr>
+    <tr><td><b>Bereich A</b></td><td class="mono">Ø 6–40 mm · Länge bis 80 mm</td></tr>
+    <tr><td><b>Bereich B</b></td><td class="mono">Ø 40–60 mm · Länge bis 150 mm</td></tr>
+    <tr><td><b>Werkstoff</b></td><td class="mono">ohne Einschränkung, inkl. Beschaffung</td></tr>
+    <tr><td><b>Oberfläche</b></td><td class="mono">inklusive Koordination</td></tr>
+    <tr><td><b>Lieferung</b></td><td class="mono">Deutschland · Österreich · Schweiz</td></tr>
+  </table>
+  <p style="margin-top:8mm">Mit jedem Angebot bekommen Sie Hinweise, welche der 12 Hebel bei Ihrem Teil greifen. Kostenlos und unverbindlich.</p>
+  <div class="cta"><div><span class="k">serienteile-cnc-drehen.de</span><b>Zeichnung hochladen – Angebot in 48 Stunden.</b><span class="mono" style="font-size:9pt;color:var(--steel)">info@aurob.de</span></div><a class="btn" href="https://serienteile-cnc-drehen.de/#anfrage">Jetzt anfragen →</a></div>
+  <div class="tb"><div><span>Hersteller</span>AUROB</div><div><span>Benennung</span>Leitfaden Drehteil-Kosten</div><div><span>Blatt</span>8 / 8</div><div><span>Web</span>serienteile-cnc-drehen.de</div></div>
+</section>
+
+</body>
+</html>

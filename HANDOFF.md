@@ -70,6 +70,7 @@ Vorbild: Instagram-Reels von „business.framwork“ (siehe `bilder/`). Dort ist
 | Prozess-Inventar | 17 Prozesse in Notion (16 aus aktiven n8n-Workflows, Status Entwurf) + 18 Automationen mit n8n-ID | Datenbank „Prozesse“ |
 | Oberbereiche | **bestätigt** (10 Bereiche, siehe Abschnitt 5) | – |
 | find-skills | als Projekt-Skill in `.claude/skills/find-skills/` | – |
+| Landingpage serienteile-cnc-drehen.de | Entwurf fertig (06.11.2026). Bilder, Impressum, Telefon fehlen. | `landingpages/serienteile-cnc-drehen.de/` |
 
 ---
 
@@ -246,6 +247,18 @@ Hinweis: Den Miro-Connector in Claude Code separat einrichten, falls er dort feh
 **21:39 – Ibrahim:** Will diese Übergabe als ZIP für den Code-Bereich.
 
 ---
+
+## 8a. Verlauf 06.11.2026 – Landingpage Fertigung
+
+**Ibrahim:** Will eine Landingpage auf serienteile-cnc-drehen.de. Ziel: viele Anfragen. Mit Leadmagnet und Funnel. Kein KI-Look.
+Angebot: Serienteile ab 100 Stk. Ø 6–40 bis 80 mm Länge, Ø 40–60 bis 150 mm. Jeder Werkstoff. Inkl. Material, Oberfläche, Lieferung DACH.
+
+**Claude:** Baut die Seite unter `landingpages/serienteile-cnc-drehen.de/`.
+- Design: technisches Zeichnungsblatt, Papier + Tusche + Signalorange. Schriften lokal.
+- Funnel: Hauptweg Anfrage (2-Schritt-Formular mit Upload), Nebenweg Leitfaden-PDF.
+- „Passt mein Teil?“-Prüfung füllt das Formular vor.
+- PHP-Versand für all-inkl. Details: `README.md`, `FUNNEL.md` im Ordner.
+- Offen: Bilder, Impressum, Datenschutz, Telefon, Absender-Postfach, Zusagen bestätigen.
 
 ## 9. Ordnerinhalt
 
