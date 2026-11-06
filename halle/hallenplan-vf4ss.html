@@ -15,8 +15,10 @@
   --wall: #2a332e;
   --old: #7d8c95;
   --old-fill: #d9e0e4;
+  --conv: #b9c4ca;
   --new: #c98a00;
   --new-fill: #f7e2a8;
+  --new-conv: #edcd7a;
   --bad: #c2372b;
   --bad-fill: #f6d6d2;
   --ok: #2f7d4f;
@@ -29,13 +31,13 @@
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #121614; --sheet: #1a201d; --ink: #e5ebe7; --muted: #9aa7a0; --line: #34403a;
-  --hall: #222a26; --wall: #cfd8d2; --old: #9fb0ba; --old-fill: #2c363c;
-  --new: #f0b52a; --new-fill: #4a3a12; --bad: #ff7466; --bad-fill: #4a201c;
+  --hall: #222a26; --wall: #cfd8d2; --old: #9fb0ba; --old-fill: #2c363c; --conv: #3a464d;
+  --new: #f0b52a; --new-fill: #4a3a12; --new-conv: #5e4a17; --bad: #ff7466; --bad-fill: #4a201c;
   --ok: #6cc690; --ok-fill: #1d3a28; --warn: #f0a94a; --warn-fill: #42301a; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #121614; --sheet: #1a201d; --ink: #e5ebe7; --muted: #9aa7a0; --line: #34403a;
-  --hall: #222a26; --wall: #cfd8d2; --old: #9fb0ba; --old-fill: #2c363c;
-  --new: #f0b52a; --new-fill: #4a3a12; --bad: #ff7466; --bad-fill: #4a201c;
+  --hall: #222a26; --wall: #cfd8d2; --old: #9fb0ba; --old-fill: #2c363c; --conv: #3a464d;
+  --new: #f0b52a; --new-fill: #4a3a12; --new-conv: #5e4a17; --bad: #ff7466; --bad-fill: #4a201c;
   --ok: #6cc690; --ok-fill: #1d3a28; --warn: #f0a94a; --warn-fill: #42301a; color-scheme: dark }
 
 body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
@@ -62,10 +64,11 @@ p { margin: 0; max-width: 68ch; }
 .check b { font-weight: 600; }
 .check span.d { display: block; color: var(--muted); font-size: 14px; }
 .tbl-wrap { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 560px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 600px; }
 th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
 td.n { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.n.bad { color: var(--bad); font-weight: 600; }
 tr.new td { background: var(--new-fill); }
 .src { font-size: 12.5px; color: var(--muted); }
 .svg-wrap { overflow-x: auto; }
@@ -76,38 +79,37 @@ svg .lbl { font-family: var(--f-display); font-weight: 600; }
 .legend i { display: inline-block; width: 14px; height: 10px; margin-right: 6px; vertical-align: middle; border: 1.5px solid; }
 .lg-old { background: var(--old-fill); border-color: var(--old) !important; }
 .lg-new { background: var(--new-fill); border-color: var(--new) !important; }
+.lg-conv { background: var(--conv); border-color: var(--old) !important; }
 .lg-op { border-style: dashed !important; border-color: var(--muted) !important; }
 ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; max-width: 72ch; }
 .elev-wrap svg { min-width: 760px; }
-a { color: var(--ink); }
 </style>
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">AUROB · Fertigungshalle · Stand 05.11.2026</div>
+    <div class="eyebrow">AUROB · Fertigungshalle · Stand 06.11.2026 · Haas-Layoutpläne</div>
     <h1>Passt die Haas VF-4SS in die Halle?</h1>
-    <p>Draufsicht und Ansicht im Maßstab. Hallenmaße aus deinen Fotos. Maschinenmaße aus Haas-Layoutplänen und Händlerangaben.</p>
+    <p>Draufsicht und Ansicht im Maßstab. Hallenmaße aus deinen Fotos. Haas-Maße aus den offiziellen Machine Layout Drawings.</p>
   </header>
 
   <div class="top">
     <section class="sheet" aria-label="Draufsicht">
       <h2>Draufsicht</h2>
       <div class="svg-wrap">
-      <svg viewBox="-150 -110 820 1880" role="img" aria-label="Draufsicht der Halle mit vier Maschinen an der linken Wand">
+      <svg viewBox="-150 -115 820 1885" role="img" aria-label="Draufsicht der Halle mit vier Maschinen an der linken Wand">
         <defs>
           <marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker>
           <pattern id="hatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" style="fill:var(--sheet)"/><line x1="0" y1="0" x2="0" y2="14" style="stroke:var(--line);stroke-width:4"/></pattern>
         </defs>
-        <!-- Hallenboden -->
+        <!-- 1 Einheit = 1 cm. y = Abstand zur Rückwand, x = Abstand zur linken Wand -->
         <rect x="0" y="0" width="508" height="1622" style="fill:var(--hall)"/>
-        <!-- Engstelle rechts (Schaltschränke) -->
-        <rect x="471" y="1060" width="37" height="300" style="fill:url(#hatch);stroke:var(--wall);stroke-width:2"/>
-        <text x="497" y="1210" font-size="20" text-anchor="middle" transform="rotate(-90 497 1210)" style="fill:var(--muted)">Schaltschrank</text>
+        <!-- Engstelle rechts (Schaltschrank, Lage geschätzt) -->
+        <rect x="471" y="1000" width="37" height="450" style="fill:url(#hatch);stroke:var(--wall);stroke-width:2"/>
+        <text x="497" y="1225" font-size="20" text-anchor="middle" transform="rotate(-90 497 1225)" style="fill:var(--muted)">Schaltschrank</text>
         <!-- Säule links vorne -->
         <rect x="0" y="1480" width="35" height="35" style="fill:var(--wall)"/>
         <!-- Wände -->
         <path d="M0,0 H508 V1622 M0,0 V1622" style="fill:none;stroke:var(--wall);stroke-width:8"/>
-        <!-- Tor -->
         <line x1="0" y1="1622" x2="200" y2="1622" style="stroke:var(--wall);stroke-width:8"/>
         <line x1="470" y1="1622" x2="508" y2="1622" style="stroke:var(--wall);stroke-width:8"/>
         <line x1="200" y1="1622" x2="470" y2="1622" style="stroke:var(--new);stroke-width:4;stroke-dasharray:14 10"/>
@@ -115,130 +117,133 @@ a { color: var(--ink); }
         <text x="335" y="1700" font-size="22" text-anchor="middle" style="fill:var(--muted)">↓ Hof 4,50 m · Rampe 3,01 m</text>
         <text x="254" y="-40" font-size="20" text-anchor="middle" style="fill:var(--muted)">Rückwand · Tür zum Nebenraum</text>
 
-        <!-- Bedienzonen (1,0 m vor jeder Maschine) -->
+        <!-- Haas-Wartungsabstand 0,91 m hinter den Haas-Maschinen -->
+        <g style="fill:none;stroke:var(--muted);stroke-width:1.5;stroke-dasharray:4 6">
+          <line x1="91" y1="390" x2="91" y2="1558"/>
+        </g>
+        <!-- Bedienzonen vorne (1,0 m) -->
         <g style="fill:none;stroke:var(--muted);stroke-width:2;stroke-dasharray:8 7">
-          <rect x="280" y="40" width="100" height="300"/>
-          <rect x="285" y="420" width="100" height="260"/>
-          <rect x="290" y="760" width="100" height="285"/>
-          <rect x="281" y="1125" width="100" height="313"/>
+          <rect x="280" y="30" width="100" height="300"/>
+          <rect x="316" y="390" width="100" height="232"/>
+          <rect x="322" y="765" width="100" height="233"/>
+          <rect x="322" y="1137" width="100" height="313"/>
         </g>
 
-        <!-- Maschinen: x = Tiefe ab Wand, y = Breite entlang Wand -->
+        <!-- Maschinen: Körper + Späneförderer (Förderer zeigt Richtung Tor) -->
         <g style="stroke-width:3">
-          <rect x="50" y="40" width="230" height="300" style="fill:var(--old-fill);stroke:var(--old)"/>
-          <rect x="50" y="420" width="235" height="260" style="fill:var(--old-fill);stroke:var(--old)"/>
-          <rect x="50" y="760" width="240" height="285" style="fill:var(--old-fill);stroke:var(--old)"/>
-          <rect x="50" y="1125" width="231" height="313" style="fill:var(--new-fill);stroke:var(--new);stroke-width:5"/>
+          <rect x="50" y="30" width="230" height="300" style="fill:var(--old-fill);stroke:var(--old);stroke-dasharray:10 6"/>
+          <rect x="91" y="390" width="225" height="232" style="fill:var(--old-fill);stroke:var(--old)"/>
+          <rect x="230" y="622" width="70" height="83" style="fill:var(--conv);stroke:var(--old)"/>
+          <rect x="91" y="765" width="231" height="233" style="fill:var(--old-fill);stroke:var(--old)"/>
+          <rect x="236" y="998" width="70" height="79" style="fill:var(--conv);stroke:var(--old)"/>
+          <rect x="91" y="1137" width="231" height="313" style="fill:var(--new-fill);stroke:var(--new);stroke-width:5"/>
+          <rect x="226" y="1450" width="80" height="108" style="fill:var(--new-conv);stroke:var(--new);stroke-width:3"/>
         </g>
-        <!-- Bedienseite (Front) Markierung -->
+        <!-- Bedienseite -->
         <g style="stroke:var(--ink);stroke-width:5">
-          <line x1="280" y1="110" x2="280" y2="270"/>
-          <line x1="285" y1="480" x2="285" y2="620"/>
-          <line x1="290" y1="830" x2="290" y2="975"/>
-          <line x1="281" y1="1200" x2="281" y2="1363"/>
+          <line x1="280" y1="100" x2="280" y2="260"/>
+          <line x1="316" y1="440" x2="316" y2="570"/>
+          <line x1="322" y1="815" x2="322" y2="950"/>
+          <line x1="322" y1="1210" x2="322" y2="1380"/>
         </g>
         <g class="lbl" font-size="34" text-anchor="middle">
-          <text x="165" y="182">Hermle</text><text x="165" y="218" font-size="24">C 600 V · 2002</text>
-          <text x="167" y="542">Haas</text><text x="167" y="578" font-size="24">VF-2SS · 2017</text>
-          <text x="170" y="895">Haas</text><text x="170" y="931" font-size="24">VM-2 · 2026</text>
-          <text x="165" y="1272">Haas</text><text x="165" y="1308" font-size="26">VF-4SS · NEU</text>
+          <text x="165" y="172">Hermle</text><text x="165" y="208" font-size="24">C 600 V · 2002</text>
+          <text x="203" y="497">Haas</text><text x="203" y="533" font-size="24">VF-2SS · 2017</text>
+          <text x="206" y="872">Haas</text><text x="206" y="908" font-size="24">VM-2 · 2026</text>
+          <text x="206" y="1272">Haas</text><text x="206" y="1308" font-size="26">VF-4SS · NEU</text>
         </g>
-        <g font-size="20" text-anchor="middle" style="fill:var(--muted)">
-          <text x="165" y="320">3,00 × 2,30</text>
-          <text x="167" y="660">2,60 × 2,35</text>
-          <text x="170" y="1025">2,85 × 2,40</text>
-          <text x="165" y="1418">3,13 × 2,31</text>
+        <g font-size="19" text-anchor="middle" style="fill:var(--muted)">
+          <text x="165" y="310">≈ 3,00 × 2,30</text>
+          <text x="203" y="600">3,15 × 2,25</text>
+          <text x="206" y="975">3,12 × 2,31</text>
+          <text x="206" y="1425">4,21 × 2,31</text>
+          <text x="140" y="1510">Förderer</text>
         </g>
 
-        <!-- Maßkette links: Längen entlang der Wand -->
-        <g font-size="22" style="stroke:var(--ink);stroke-width:1.5">
+        <!-- Maßkette links -->
+        <g style="stroke:var(--ink);stroke-width:1.5">
           <line x1="-40" y1="0" x2="-40" y2="1622" style="stroke:var(--line)"/>
-          <line x1="-40" y1="40" x2="-40" y2="340" marker-start="url(#ar)" marker-end="url(#ar)"/>
-          <line x1="-40" y1="420" x2="-40" y2="680" marker-start="url(#ar)" marker-end="url(#ar)"/>
-          <line x1="-40" y1="760" x2="-40" y2="1045" marker-start="url(#ar)" marker-end="url(#ar)"/>
-          <line x1="-40" y1="1125" x2="-40" y2="1438" marker-start="url(#ar)" marker-end="url(#ar)"/>
-          <line x1="-40" y1="1438" x2="-40" y2="1622" marker-start="url(#ar)" marker-end="url(#ar)" style="stroke:var(--ok)"/>
+          <line x1="-40" y1="30" x2="-40" y2="330" marker-start="url(#ar)" marker-end="url(#ar)"/>
+          <line x1="-40" y1="390" x2="-40" y2="705" marker-start="url(#ar)" marker-end="url(#ar)"/>
+          <line x1="-40" y1="765" x2="-40" y2="1077" marker-start="url(#ar)" marker-end="url(#ar)"/>
+          <line x1="-40" y1="1137" x2="-40" y2="1558" marker-start="url(#ar)" marker-end="url(#ar)"/>
         </g>
-        <g font-size="22" text-anchor="middle" style="stroke:none">
-          <text transform="translate(-55 190) rotate(-90)">3,00</text>
-          <text transform="translate(-55 550) rotate(-90)">2,60</text>
-          <text transform="translate(-55 902) rotate(-90)">2,85</text>
-          <text transform="translate(-55 1281) rotate(-90)">3,13</text>
-          <text transform="translate(-55 1530) rotate(-90)" style="fill:var(--ok)">1,84</text>
-          <text transform="translate(-55 380) rotate(-90)" font-size="18" style="fill:var(--muted)">0,8</text>
-          <text transform="translate(-55 720) rotate(-90)" font-size="18" style="fill:var(--muted)">0,8</text>
-          <text transform="translate(-55 1085) rotate(-90)" font-size="18" style="fill:var(--muted)">0,8</text>
+        <g font-size="22" text-anchor="middle">
+          <text transform="translate(-55 180) rotate(-90)">3,00</text>
+          <text transform="translate(-55 548) rotate(-90)">3,15</text>
+          <text transform="translate(-55 921) rotate(-90)">3,12</text>
+          <text transform="translate(-55 1348) rotate(-90)">4,21</text>
+          <text transform="translate(-55 1592) rotate(-90)" font-size="18" style="fill:var(--bad)">0,64</text>
+          <text transform="translate(-55 360) rotate(-90)" font-size="18" style="fill:var(--warn)">0,6</text>
+          <text transform="translate(-55 735) rotate(-90)" font-size="18" style="fill:var(--warn)">0,6</text>
+          <text transform="translate(-55 1107) rotate(-90)" font-size="18" style="fill:var(--warn)">0,6</text>
         </g>
-        <!-- Gesamtlänge -->
         <line x1="-110" y1="0" x2="-110" y2="1622" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
         <text transform="translate(-122 811) rotate(-90)" font-size="26" text-anchor="middle">Hallenlänge 16,22 m</text>
 
-        <!-- Breiten oben/unten -->
-        <line x1="0" y1="-25" x2="508" y2="-25" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <line x1="0" y1="-20" x2="508" y2="-20" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
         <text x="254" y="-82" font-size="26" text-anchor="middle">Breite hinten 5,08 m</text>
 
-        <!-- Gang vorne -->
-        <line x1="281" y1="1250" x2="471" y2="1250" style="stroke:var(--warn);stroke-width:2" marker-start="url(#ar)" marker-end="url(#ar)"/>
-        <text x="376" y="1240" font-size="22" text-anchor="middle" style="fill:var(--warn)">Gang 1,90</text>
-        <line x1="0" y1="1560" x2="471" y2="1560" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
-        <text x="300" y="1550" font-size="22" text-anchor="middle">frei 4,71 m</text>
-        <!-- Gang hinten -->
-        <line x1="290" y1="900" x2="508" y2="900" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
-        <text x="420" y="890" font-size="22" text-anchor="middle">Gang 2,18</text>
         <!-- Wandabstand -->
-        <text x="25" y="60" font-size="16" text-anchor="middle" style="fill:var(--muted)" transform="rotate(-90 25 60)">0,5</text>
+        <line x1="0" y1="1180" x2="91" y2="1180" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="46" y="1170" font-size="18" text-anchor="middle">0,91</text>
+        <!-- Gang vorne -->
+        <line x1="322" y1="1180" x2="471" y2="1180" style="stroke:var(--bad);stroke-width:2" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="396" y="1170" font-size="22" text-anchor="middle" style="fill:var(--bad)">Gang 1,49</text>
+        <line x1="0" y1="1595" x2="471" y2="1595" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="390" y="1585" font-size="22" text-anchor="middle">frei 4,71 m</text>
+        <!-- Gang hinten -->
+        <line x1="316" y1="470" x2="508" y2="470" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="412" y="460" font-size="22" text-anchor="middle">Gang 1,92</text>
 
-        <!-- Blickrichtung Ansicht -->
-        <g style="fill:var(--muted)">
-          <text x="600" y="811" font-size="22" text-anchor="middle" transform="rotate(90 600 811)">Ansicht ← von rechter Wand</text>
-        </g>
+        <text x="600" y="811" font-size="22" text-anchor="middle" transform="rotate(90 600 811)" style="fill:var(--muted)">Ansicht ← von rechter Wand</text>
       </svg>
       </div>
       <div class="legend">
         <span><i class="lg-old"></i>Bestand</span>
         <span><i class="lg-new"></i>VF-4SS neu</span>
+        <span><i class="lg-conv"></i>Späneförderer</span>
         <span><i class="lg-op"></i>Bedienzone 1,0 m</span>
         <span>▮ Bedienseite</span>
       </div>
-      <p class="src" style="margin-top:8px">Maße in m. Breite entlang der Wand × Tiefe. Lage der Bestandsmaschinen angenommen. Lage Schaltschrank und Säule geschätzt.</p>
+      <p class="src" style="margin-top:8px">Maße in m: Breite entlang der Wand × Tiefe. Haas-Maschinen 0,91 m vor der Wand (Haas-Wartungsabstand). Hermle ohne Layoutplan, Lage angenommen. Schaltschrank und Säule geschätzt.</p>
     </section>
 
     <div class="side">
       <section class="sheet verdict" aria-label="Ergebnis">
         <h2>Ergebnis</h2>
-        <div class="check"><span class="pill ok">passt</span><div><b>Grundfläche</b><span class="d">Alle vier Maschinen brauchen 11,58 m an der linken Wand. Mit 0,8 m Abstand sind es 14,38 m. Die Halle hat 16,22 m. Vor dem Tor bleiben 1,84 m.</span></div></div>
-        <div class="check"><span class="pill warn">knapp</span><div><b>Gang vorne</b><span class="d">Vor der VF-4SS bleiben 1,90 m bis zum Schaltschrank. Für Bedienung reicht das. Für einen Stapler wird es eng.</span></div></div>
-        <div class="check"><span class="pill bad">kritisch</span><div><b>Höhe im Betrieb</b><span class="d">Haas gibt 3,09 m Betriebshöhe an. Die Decke liegt bei 3,05 m. Unterzüge und Kabeltrassen liegen noch tiefer. Die Z-Achse fährt dann gegen die Decke.</span></div></div>
-        <div class="check"><span class="pill ok">passt</span><div><b>Rampe und Hof</b><span class="d">Exportpalette 2,32 m breit. Rampe 3,01 m, Hof 4,50 m. Das reicht.</span></div></div>
-        <div class="check"><span class="pill warn">offen</span><div><b>Tor und Bühne</b><span class="d">Tormaße fehlen. Transporthöhe 2,57 bis 2,81 m. Gewicht ca. 6,2 t. Traglast und Länge der Bühne an der Rampe fehlen.</span></div></div>
+        <div class="check"><span class="pill warn">knapp</span><div><b>Länge an der Wand</b><span class="d">Die VF-4SS ist mit Späneförderer 4,21 m breit. Alle vier Maschinen brauchen 13,59 m. Mit 0,6 m Abstand bleiben 0,64 m bis zum Tor. Haas fordert 0,91 m rundum. Damit fehlen ca. 0,3 m.</span></div></div>
+        <div class="check"><span class="pill bad">eng</span><div><b>Gang vorne</b><span class="d">Hinter der VF-4SS braucht der Schaltschrank 0,91 m zum Öffnen. Vorne bleiben dann 1,49 m bis zum Schaltschrank rechts. Ein Stapler passt da kaum.</span></div></div>
+        <div class="check"><span class="pill bad">kritisch</span><div><b>Höhe im Betrieb</b><span class="d">Haas: Spindelkopf und Kabelschlepp max. 3,093 m. Die Decke liegt bei 3,05 m. Die Maschine ist 4,3 cm zu hoch. Unterzüge und Trassen liegen noch tiefer.</span></div></div>
+        <div class="check"><span class="pill ok">passt</span><div><b>Rampe und Hof</b><span class="d">Transport: 3,13 × 2,06 m. Längs durch die Rampe (3,01 m) passt nur die 2,06-m-Seite quer. Im Hof (4,50 m) kann sie drehen. Die Diagonale ist 3,74 m.</span></div></div>
+        <div class="check"><span class="pill warn">offen</span><div><b>Tor und Bühne</b><span class="d">Transporthöhe 2,39 m (30er-Wechsler) oder 2,81 m (50er). Plus Rollen ca. 0,1 m. Tormaße und Bühnenlast fehlen.</span></div></div>
       </section>
 
       <section class="sheet" aria-label="Maße">
         <h2>Maschinenmaße</h2>
         <div class="tbl-wrap">
         <table>
-          <thead><tr><th>Maschine</th><th>Breite</th><th>Tiefe</th><th>Höhe Betrieb</th><th>Gewicht</th><th>Quelle</th></tr></thead>
+          <thead><tr><th>Maschine</th><th>Breite</th><th>Tiefe</th><th>Höhe Betrieb</th><th>Max. Höhe</th><th>Quelle</th></tr></thead>
           <tbody>
-            <tr><td>Hermle C 600 V</td><td class="n">3,00 m</td><td class="n">2,30 m</td><td class="n">2,70 m</td><td class="n">≈ 6,0 t</td><td class="src">Inserate Bj. 2002</td></tr>
-            <tr><td>Haas VF-2SS</td><td class="n">2,60 m</td><td class="n">2,35 m</td><td class="n">2,72 m</td><td class="n">≈ 3,5 t</td><td class="src">Inserate, Mittelwert</td></tr>
-            <tr><td>Haas VM-2</td><td class="n">2,85 m</td><td class="n">2,40 m</td><td class="n">2,79 m</td><td class="n">≈ 3,9 t</td><td class="src">Inserate, Schätzwert</td></tr>
-            <tr class="new"><td><b>Haas VF-4SS</b></td><td class="n">3,13 m</td><td class="n">2,31 m</td><td class="n"><b>3,09 m</b></td><td class="n">≈ 6,2 t</td><td class="src">Haas-Layoutplan 01/2022</td></tr>
+            <tr><td>Hermle C 600 V</td><td class="n">3,00 m</td><td class="n">2,30 m</td><td class="n">2,70 m</td><td class="n">–</td><td class="src">Inserate, Schätzung</td></tr>
+            <tr><td>Haas VF-2SS</td><td class="n">3,147 m</td><td class="n">2,249 m</td><td class="n">2,724 m</td><td class="n">2,724 m</td><td class="src">Haas MLD 01/2023</td></tr>
+            <tr><td>Haas VM-2</td><td class="n">3,116 m</td><td class="n">2,311 m</td><td class="n">2,733 m</td><td class="n">2,996 m<br>3,052 m (70er)</td><td class="src">Haas MLD 11/2021</td></tr>
+            <tr class="new"><td><b>Haas VF-4SS</b></td><td class="n">3,128 m<br>+1,082 Förderer</td><td class="n">2,314 m</td><td class="n bad">3,093 m</td><td class="n bad">3,093 m</td><td class="src">Haas MLD 01/2022</td></tr>
           </tbody>
         </table>
         </div>
-        <h3 style="margin-top:16px">VF-4SS Transport</h3>
+        <p class="src" style="margin-top:6px">VF-2SS und VM-2: Breite schon mit Förderer. VM-2: Kabelschlepp 2,996 m, mit 70er-Wechsler 3,052 m. VF-4SS: Schaltschranktür hinten braucht 0,88 m.</p>
+        <h3 style="margin-top:16px">VF-4SS Transport (Haas)</h3>
         <div class="tbl-wrap">
         <table>
-          <thead><tr><th>Variante</th><th>Länge</th><th>Breite</th><th>Höhe</th></tr></thead>
+          <thead><tr><th>Variante</th><th>Breite</th><th>Tiefe</th><th>Höhe</th></tr></thead>
           <tbody>
-            <tr><td>Exportpalette</td><td class="n">3,33 m</td><td class="n">2,32 m</td><td class="n">2,57 m</td></tr>
-            <tr><td>Palette mit Späneförderer</td><td class="n">4,14 m</td><td class="n">2,33 m</td><td class="n">2,57 m</td></tr>
-            <tr><td>Inlandspalette</td><td class="n">3,86 m</td><td class="n">2,51 m</td><td class="n">2,69 m</td></tr>
-            <tr><td>Versandhöhe mit 50+1 Werkzeugwechsler</td><td class="n">–</td><td class="n">–</td><td class="n">2,81 m</td></tr>
+            <tr><td>Versand, 30er-Wechsler</td><td class="n">3,128 m</td><td class="n">2,056 m</td><td class="n">2,388 m</td></tr>
+            <tr><td>Versand, 50er-Wechsler</td><td class="n">3,128 m</td><td class="n">2,056 m</td><td class="n">2,814 m</td></tr>
+            <tr><td>Gewicht (nicht im MLD)</td><td class="n" colspan="3">ca. 6,0–6,3 t laut Händlern</td></tr>
           </tbody>
         </table>
         </div>
-        <p class="src" style="margin-top:8px">Bestandsmaße sind Planwerte. Bitte vor Ort nachmessen.</p>
       </section>
     </div>
   </div>
@@ -247,71 +252,74 @@ a { color: var(--ink); }
     <h2>Ansicht von der rechten Wand</h2>
     <p class="src" style="margin-bottom:10px">Du stehst an der rechten Wand. Alle Maschinen zeigen mit der Front zu dir. Das Tor ist links.</p>
     <div class="svg-wrap">
-    <svg viewBox="-110 -90 1800 550" role="img" aria-label="Ansicht der vier Maschinen mit Deckenhöhe">
+    <svg viewBox="-110 -95 1810 555" role="img" aria-label="Ansicht der vier Maschinen mit Deckenhöhe">
       <defs>
         <marker id="ar2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker>
       </defs>
-      <!-- y: Boden bei 340, 1 cm = 1 Einheit (oben = 340 - h) -->
+      <!-- Boden bei y=340, Decke bei y=35 (3,05 m). x = 1622 - y der Draufsicht -->
       <rect x="0" y="35" width="1622" height="305" style="fill:var(--hall)"/>
       <line x1="0" y1="35" x2="1622" y2="35" style="stroke:var(--wall);stroke-width:6"/>
       <line x1="0" y1="340" x2="1622" y2="340" style="stroke:var(--wall);stroke-width:6"/>
       <line x1="0" y1="35" x2="0" y2="340" style="stroke:var(--new);stroke-width:4;stroke-dasharray:12 8"/>
       <line x1="1622" y1="35" x2="1622" y2="340" style="stroke:var(--wall);stroke-width:6"/>
-      <text x="811" y="25" font-size="20" text-anchor="middle" style="fill:var(--muted)">Decke 3,05 m · Unterzüge und Trassen tiefer</text>
-      <text x="8" y="-20" font-size="20">Tor</text>
-      <text x="1614" y="-20" font-size="20" text-anchor="end">Rückwand</text>
+      <text x="1000" y="25" font-size="20" text-anchor="middle" style="fill:var(--muted)">Decke 3,05 m · Unterzüge und Trassen tiefer</text>
+      <text x="8" y="-25" font-size="20">Tor</text>
+      <text x="1614" y="-25" font-size="20" text-anchor="end">Rückwand</text>
 
-      <!-- Maschinen (x = 1622 - y aus Draufsicht) -->
-      <rect x="1282" y="70" width="300" height="270" style="fill:var(--old-fill);stroke:var(--old);stroke-width:3"/>
-      <rect x="942" y="68" width="260" height="272" style="fill:var(--old-fill);stroke:var(--old);stroke-width:3"/>
-      <rect x="577" y="61" width="285" height="279" style="fill:var(--old-fill);stroke:var(--old);stroke-width:3"/>
-      <rect x="184" y="31" width="313" height="309" style="fill:var(--new-fill);stroke:var(--new);stroke-width:4"/>
-      <!-- Kollision -->
-      <rect x="184" y="31" width="313" height="4" style="fill:var(--bad)"/>
-      <circle cx="340" cy="33" r="34" style="fill:none;stroke:var(--bad);stroke-width:3"/>
-      <text x="390" y="-30" font-size="22" style="fill:var(--bad)">+4 cm über Decke</text>
-      <line x1="388" y1="-25" x2="360" y2="4" style="stroke:var(--bad);stroke-width:2"/>
+      <!-- Hermle 1292–1592 -->
+      <rect x="1292" y="70" width="300" height="270" style="fill:var(--old-fill);stroke:var(--old);stroke-width:3;stroke-dasharray:10 6"/>
+      <!-- VF-2SS: Körper 1000–1232, Förderer 917–1000 -->
+      <rect x="1000" y="68" width="232" height="272" style="fill:var(--old-fill);stroke:var(--old);stroke-width:3"/>
+      <rect x="917" y="268" width="83" height="72" style="fill:var(--conv);stroke:var(--old);stroke-width:2"/>
+      <!-- VM-2: Körper 624–857, Förderer 545–624, Kabelschlepp bis 2,996 -->
+      <rect x="624" y="67" width="233" height="273" style="fill:var(--old-fill);stroke:var(--old);stroke-width:3"/>
+      <rect x="700" y="40" width="80" height="27" style="fill:none;stroke:var(--old);stroke-width:2;stroke-dasharray:6 4"/>
+      <rect x="545" y="268" width="79" height="72" style="fill:var(--conv);stroke:var(--old);stroke-width:2"/>
+      <!-- VF-4SS: Körper 172–485, Förderer 64–172 (Hubhöhe 1,035) -->
+      <rect x="172" y="31" width="313" height="309" style="fill:var(--new-fill);stroke:var(--new);stroke-width:4"/>
+      <rect x="64" y="237" width="108" height="103" style="fill:var(--new-conv);stroke:var(--new);stroke-width:2"/>
+      <rect x="172" y="31" width="313" height="4" style="fill:var(--bad)"/>
+      <circle cx="330" cy="33" r="34" style="fill:none;stroke:var(--bad);stroke-width:3"/>
+      <text x="380" y="-35" font-size="22" style="fill:var(--bad)">+4,3 cm über Decke</text>
+      <line x1="378" y1="-30" x2="352" y2="4" style="stroke:var(--bad);stroke-width:2"/>
 
-      <!-- Türfenster / Front-Andeutung -->
       <g style="fill:none;stroke:var(--old);stroke-width:2">
-        <rect x="1330" y="150" width="200" height="110"/>
-        <rect x="985" y="150" width="175" height="110"/>
-        <rect x="625" y="145" width="190" height="115"/>
+        <rect x="1340" y="150" width="200" height="110"/>
+        <rect x="1030" y="150" width="172" height="110"/>
+        <rect x="655" y="150" width="172" height="110"/>
       </g>
-      <rect x="230" y="140" width="220" height="120" style="fill:none;stroke:var(--new);stroke-width:2"/>
+      <rect x="215" y="140" width="225" height="120" style="fill:none;stroke:var(--new);stroke-width:2"/>
 
       <g class="lbl" font-size="28" text-anchor="middle">
-        <text x="1432" y="120">Hermle C 600 V</text>
-        <text x="1072" y="120">VF-2SS</text>
-        <text x="719" y="115">VM-2</text>
-        <text x="340" y="105">VF-4SS neu</text>
+        <text x="1442" y="120">Hermle C 600 V</text>
+        <text x="1116" y="120">VF-2SS</text>
+        <text x="740" y="120">VM-2</text>
+        <text x="328" y="105">VF-4SS neu</text>
       </g>
       <g font-size="20" text-anchor="middle" style="fill:var(--muted)">
-        <text x="1432" y="300">H 2,70</text>
-        <text x="1072" y="300">H 2,72</text>
-        <text x="719" y="300">H 2,79</text>
-        <text x="340" y="300" style="fill:var(--bad)">H 3,09</text>
+        <text x="1442" y="300">H ≈ 2,70</text>
+        <text x="1116" y="300">H 2,724</text>
+        <text x="740" y="290">H 2,733</text><text x="740" y="318" font-size="17">Schlepp 2,996</text>
+        <text x="328" y="300" style="fill:var(--bad)">H 3,093</text>
       </g>
 
-      <!-- Höhenmaß rechts -->
-      <line x1="1660" y1="35" x2="1660" y2="340" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
-      <text transform="translate(1690 188) rotate(-90)" font-size="22" text-anchor="middle">3,05 m</text>
+      <line x1="1670" y1="35" x2="1670" y2="340" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+      <text transform="translate(1700 188) rotate(-90)" font-size="22" text-anchor="middle">3,05 m</text>
 
-      <!-- Maßkette unten -->
       <g style="stroke:var(--ink);stroke-width:1.5">
-        <line x1="0" y1="380" x2="184" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)" style="stroke:var(--ok)"/>
-        <line x1="184" y1="380" x2="497" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
-        <line x1="577" y1="380" x2="862" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
-        <line x1="942" y1="380" x2="1202" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
-        <line x1="1282" y1="380" x2="1582" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+        <line x1="0" y1="380" x2="64" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)" style="stroke:var(--bad)"/>
+        <line x1="64" y1="380" x2="485" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+        <line x1="545" y1="380" x2="857" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+        <line x1="917" y1="380" x2="1232" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+        <line x1="1292" y1="380" x2="1592" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
       </g>
       <g font-size="20" text-anchor="middle">
-        <text x="92" y="410" style="fill:var(--ok)">1,84</text>
-        <text x="340" y="410">3,13</text>
-        <text x="719" y="410">2,85</text>
-        <text x="1072" y="410">2,60</text>
-        <text x="1432" y="410">3,00</text>
-        <text x="811" y="440" style="fill:var(--muted)">Gesamt 16,22 m</text>
+        <text x="32" y="410" style="fill:var(--bad)">0,64</text>
+        <text x="274" y="410">4,21</text>
+        <text x="701" y="410">3,12</text>
+        <text x="1074" y="410">3,15</text>
+        <text x="1442" y="410">3,00</text>
+        <text x="811" y="445" style="fill:var(--muted)">Abstände 0,6 m · Gesamt 16,22 m</text>
       </g>
     </svg>
     </div>
@@ -320,14 +328,15 @@ a { color: var(--ink); }
   <section class="sheet" aria-label="Offene Punkte">
     <h2>Das fehlt noch für eine sichere Aussage</h2>
     <ol>
+      <li>Miss die echte Deckenhöhe an der Stelle der VF-4SS. Miss auch unter dem tiefsten Unterzug.</li>
+      <li>Miss den Abstand von der Decke zum Kabelschlepp der VM-2. Haas gibt 2,996 m an. Das ist ein guter Vergleichswert.</li>
       <li>Miss das Tor zur Halle: lichte Breite und lichte Höhe.</li>
-      <li>Miss die Höhe unter dem tiefsten Unterzug an der Stelle der VF-4SS.</li>
-      <li>Kläre die Plattform an der Rampe: Traglast, Länge, Hubbühne oder fester Boden.</li>
-      <li>Frag Haas nach der Betriebshöhe genau deiner Konfiguration (VF-4SS-EU, Werkzeugwechsler).</li>
-      <li>Prüf die Säule links vorne und die Türen in der linken Wand. Sie liegen eventuell im Stellplatz.</li>
-      <li>Miss die echte Lage der drei Bestandsmaschinen nach.</li>
+      <li>Kläre die Bühne an der Rampe: Traglast, Länge, Breite.</li>
+      <li>Miss die Hermle: Breite, Tiefe, Höhe und Lage.</li>
+      <li>Prüf die Säule links vorne und die Türen in der linken Wand.</li>
+      <li>Frag Haas, ob die Nivellierfüße tiefer gehen. Die Haas-Höhen gelten für 76 mm Fußhöhe.</li>
     </ol>
   </section>
 
-  <p class="src">Quellen: Haas-Layoutplan VF-4/4SS 01/2022 (haascnc.com), Haas Shipping Dimensions ES0428, Händlerinserate (exapro, maschinensucher, machinetools, equipt). Die Haas-Seiten waren hier nicht direkt abrufbar. Die Werte stammen aus Suchauszügen.</p>
+  <p class="src">Quellen: Haas Machine Layout Drawings VF-4/4SS (01/2022), VF-2/VF-2SS/VF-2TR (01/2023), VM-2 (11/2021). Hermle und Gewicht: Händlerinserate.</p>
 </div>
