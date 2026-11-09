@@ -1,0 +1,344 @@
+<title>Hallenplan mit UMC-500</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: Werkstatt-Zeichnungsblatt. Links Draufsicht (hochkant), rechts Prüfergebnis, unten Ansicht über die volle Breite. */
+:root {
+  --bg: #eef1ee;
+  --sheet: #fbfcfa;
+  --ink: #1c2420;
+  --muted: #5d6a63;
+  --line: #c9d1cb;
+  --hall: #e4e9e5;
+  --wall: #2a332e;
+  --old: #7d8c95;
+  --old-fill: #d9e0e4;
+  --conv: #b9c4ca;
+  --new: #c98a00;
+  --new-fill: #f7e2a8;
+  --new-conv: #edcd7a;
+  --bad: #c2372b;
+  --bad-fill: #f6d6d2;
+  --ok: #2f7d4f;
+  --ok-fill: #d6ecdd;
+  --warn: #a66400;
+  --warn-fill: #f6e5c8;
+  --f-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121614; --sheet: #1a201d; --ink: #e5ebe7; --muted: #9aa7a0; --line: #34403a;
+  --hall: #222a26; --wall: #cfd8d2; --old: #9fb0ba; --old-fill: #2c363c; --conv: #3a464d;
+  --new: #f0b52a; --new-fill: #4a3a12; --new-conv: #5e4a17; --bad: #ff7466; --bad-fill: #4a201c;
+  --ok: #6cc690; --ok-fill: #1d3a28; --warn: #f0a94a; --warn-fill: #42301a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121614; --sheet: #1a201d; --ink: #e5ebe7; --muted: #9aa7a0; --line: #34403a;
+  --hall: #222a26; --wall: #cfd8d2; --old: #9fb0ba; --old-fill: #2c363c; --conv: #3a464d;
+  --new: #f0b52a; --new-fill: #4a3a12; --new-conv: #5e4a17; --bad: #ff7466; --bad-fill: #4a201c;
+  --ok: #6cc690; --ok-fill: #1d3a28; --warn: #f0a94a; --warn-fill: #42301a; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 28px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 22px; }
+header { display: grid; gap: 4px; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 5vw, 44px); line-height: 1.05; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-weight: 600; font-size: 24px; margin: 0 0 10px; letter-spacing: .01em; }
+h3 { font-family: var(--f-display); font-weight: 600; font-size: 19px; margin: 0 0 6px; }
+p { margin: 0; max-width: 68ch; }
+.sheet { background: var(--sheet); border: 1px solid var(--line); border-radius: 6px; padding: 18px; min-width: 0; }
+.top { display: grid; grid-template-columns: minmax(280px, 400px) 1fr; gap: 22px; align-items: start; }
+@media (max-width: 820px) { .top { grid-template-columns: 1fr; } }
+.side { display: grid; gap: 22px; min-width: 0; }
+.verdict { display: grid; gap: 10px; }
+.check { display: grid; grid-template-columns: 86px 1fr; gap: 12px; align-items: start; padding: 10px 0; border-top: 1px solid var(--line); }
+.check:first-of-type { border-top: 0; }
+.pill { font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; text-align: center; padding: 3px 6px; border-radius: 3px; }
+.pill.ok { background: var(--ok-fill); color: var(--ok); }
+.pill.bad { background: var(--bad-fill); color: var(--bad); }
+.pill.warn { background: var(--warn-fill); color: var(--warn); }
+.check b { font-weight: 600; }
+.check span.d { display: block; color: var(--muted); font-size: 14px; }
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 600px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+td.n { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.n.bad { color: var(--bad); font-weight: 600; }
+tr.new td { background: var(--new-fill); }
+.src { font-size: 12.5px; color: var(--muted); }
+.svg-wrap { overflow-x: auto; }
+svg { display: block; width: 100%; height: auto; }
+svg text { font-family: var(--f-mono); fill: var(--ink); }
+svg .lbl { font-family: var(--f-display); font-weight: 600; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); margin-top: 10px; }
+.legend i { display: inline-block; width: 14px; height: 10px; margin-right: 6px; vertical-align: middle; border: 1.5px solid; }
+.lg-old { background: var(--old-fill); border-color: var(--old) !important; }
+.lg-new { background: var(--new-fill); border-color: var(--new) !important; }
+.lg-conv { background: var(--conv); border-color: var(--old) !important; }
+.lg-op { border-style: dashed !important; border-color: var(--muted) !important; }
+ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; max-width: 72ch; }
+.elev-wrap svg { min-width: 760px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">AUROB · Fertigungshalle · Neue Planung · Stand 09.11.2026</div>
+    <h1>Neue Hallenplanung mit UMC-500</h1>
+    <p>Reihenfolge von hinten nach vorne: VF-2SS, VM-2, UMC-500, Hermle am Tor. Draufsicht und Ansicht im Maßstab.</p>
+  </header>
+
+  <div class="top">
+    <section class="sheet" aria-label="Draufsicht">
+      <h2>Draufsicht</h2>
+      <div class="svg-wrap">
+      <svg viewBox="-150 -115 820 1885" role="img" aria-label="Draufsicht der Halle mit neuer Anordnung">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker>
+          <pattern id="hatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" style="fill:var(--sheet)"/><line x1="0" y1="0" x2="0" y2="14" style="stroke:var(--line);stroke-width:4"/></pattern>
+        </defs>
+        <!-- 1 Einheit = 1 cm. y = Abstand zur Rückwand, x = Abstand zur linken Wand -->
+        <rect x="0" y="0" width="508" height="1622" style="fill:var(--hall)"/>
+        <rect x="471" y="1000" width="37" height="450" style="fill:url(#hatch);stroke:var(--wall);stroke-width:2"/>
+        <text x="497" y="1225" font-size="20" text-anchor="middle" transform="rotate(-90 497 1225)" style="fill:var(--muted)">Schaltschrank</text>
+        <rect x="0" y="1540" width="35" height="35" style="fill:var(--wall)"/>
+        <path d="M0,0 H508 V1622 M0,0 V1622" style="fill:none;stroke:var(--wall);stroke-width:8"/>
+        <line x1="0" y1="1622" x2="200" y2="1622" style="stroke:var(--wall);stroke-width:8"/>
+        <line x1="470" y1="1622" x2="508" y2="1622" style="stroke:var(--wall);stroke-width:8"/>
+        <line x1="200" y1="1622" x2="470" y2="1622" style="stroke:var(--new);stroke-width:4;stroke-dasharray:14 10"/>
+        <text x="335" y="1665" font-size="24" text-anchor="middle">Sektionaltor · Maße fehlen</text>
+        <text x="335" y="1700" font-size="22" text-anchor="middle" style="fill:var(--muted)">↓ Hof 4,50 m · Rampe 3,01 m</text>
+        <text x="254" y="-40" font-size="20" text-anchor="middle" style="fill:var(--muted)">Rückwand · Tür zum Nebenraum</text>
+
+        <!-- Haas-Wartungsabstand 0,91 m zur Wand -->
+        <line x1="91" y1="30" x2="91" y2="1130" style="stroke:var(--muted);stroke-width:1.5;stroke-dasharray:4 6"/>
+        <!-- Bedienzonen vorne -->
+        <g style="fill:none;stroke:var(--muted);stroke-width:2;stroke-dasharray:8 7">
+          <rect x="316" y="30" width="100" height="232"/>
+          <rect x="322" y="436" width="100" height="233"/>
+          <rect x="388" y="839" width="83" height="291" style="stroke:var(--bad)"/>
+          <rect x="280" y="1221" width="100" height="300"/>
+        </g>
+
+        <!-- Maschinen -->
+        <g style="stroke-width:3">
+          <rect x="91" y="30" width="225" height="232" style="fill:var(--old-fill);stroke:var(--old)"/>
+          <rect x="230" y="262" width="70" height="83" style="fill:var(--conv);stroke:var(--old)"/>
+          <rect x="91" y="436" width="231" height="233" style="fill:var(--old-fill);stroke:var(--old)"/>
+          <rect x="236" y="669" width="70" height="79" style="fill:var(--conv);stroke:var(--old)"/>
+          <rect x="91" y="839" width="297" height="291" style="fill:var(--new-fill);stroke:var(--new);stroke-width:5"/>
+          <rect x="50" y="1221" width="230" height="300" style="fill:var(--old-fill);stroke:var(--old);stroke-dasharray:10 6"/>
+        </g>
+        <g style="stroke:var(--ink);stroke-width:5">
+          <line x1="316" y1="80" x2="316" y2="210"/>
+          <line x1="322" y1="485" x2="322" y2="620"/>
+          <line x1="388" y1="910" x2="388" y2="1060"/>
+          <line x1="280" y1="1291" x2="280" y2="1451"/>
+        </g>
+        <g class="lbl" font-size="34" text-anchor="middle">
+          <text x="203" y="137">Haas</text><text x="203" y="173" font-size="24">VF-2SS · 2017</text>
+          <text x="206" y="543">Haas</text><text x="206" y="579" font-size="24">VM-2 · 2026</text>
+          <text x="240" y="975">Haas</text><text x="240" y="1011" font-size="26">UMC-500 · NEU</text>
+          <text x="165" y="1363">Hermle</text><text x="165" y="1399" font-size="24">C 600 V · 2002</text>
+        </g>
+        <g font-size="19" text-anchor="middle" style="fill:var(--muted)">
+          <text x="203" y="240">3,15 × 2,25</text>
+          <text x="206" y="647">3,12 × 2,31</text>
+          <text x="240" y="1100">2,91 × 2,97</text>
+          <text x="165" y="1500">≈ 3,00 × 2,30</text>
+        </g>
+
+        <!-- Maßkette links -->
+        <g style="stroke:var(--ink);stroke-width:1.5">
+          <line x1="-40" y1="0" x2="-40" y2="1622" style="stroke:var(--line)"/>
+          <line x1="-40" y1="30" x2="-40" y2="345" marker-start="url(#ar)" marker-end="url(#ar)"/>
+          <line x1="-40" y1="436" x2="-40" y2="748" marker-start="url(#ar)" marker-end="url(#ar)"/>
+          <line x1="-40" y1="839" x2="-40" y2="1130" marker-start="url(#ar)" marker-end="url(#ar)"/>
+          <line x1="-40" y1="1221" x2="-40" y2="1521" marker-start="url(#ar)" marker-end="url(#ar)"/>
+          <line x1="-40" y1="1521" x2="-40" y2="1622" marker-start="url(#ar)" marker-end="url(#ar)" style="stroke:var(--ok)"/>
+        </g>
+        <g font-size="22" text-anchor="middle">
+          <text transform="translate(-55 188) rotate(-90)">3,15</text>
+          <text transform="translate(-55 592) rotate(-90)">3,12</text>
+          <text transform="translate(-55 985) rotate(-90)">2,91</text>
+          <text transform="translate(-55 1371) rotate(-90)">3,00</text>
+          <text transform="translate(-55 1572) rotate(-90)" font-size="18" style="fill:var(--ok)">1,01</text>
+          <text transform="translate(-55 391) rotate(-90)" font-size="18" style="fill:var(--ok)">0,91</text>
+          <text transform="translate(-55 794) rotate(-90)" font-size="18" style="fill:var(--ok)">0,91</text>
+          <text transform="translate(-55 1176) rotate(-90)" font-size="18" style="fill:var(--ok)">0,91</text>
+        </g>
+        <line x1="-110" y1="0" x2="-110" y2="1622" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text transform="translate(-122 811) rotate(-90)" font-size="26" text-anchor="middle">Hallenlänge 16,22 m</text>
+        <line x1="0" y1="-20" x2="508" y2="-20" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="254" y="-82" font-size="26" text-anchor="middle">Breite hinten 5,08 m</text>
+
+        <!-- Gänge -->
+        <line x1="316" y1="120" x2="508" y2="120" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="412" y="110" font-size="22" text-anchor="middle">Gang 1,92</text>
+        <line x1="322" y1="520" x2="508" y2="520" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="415" y="510" font-size="22" text-anchor="middle">Gang 1,86</text>
+        <line x1="388" y1="880" x2="508" y2="880" style="stroke:var(--warn);stroke-width:2" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="448" y="870" font-size="20" text-anchor="middle" style="fill:var(--warn)">1,20</text>
+        <line x1="388" y1="1080" x2="471" y2="1080" style="stroke:var(--bad);stroke-width:2" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="430" y="1070" font-size="20" text-anchor="middle" style="fill:var(--bad)">0,83</text>
+        <line x1="280" y1="1300" x2="471" y2="1300" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="375" y="1290" font-size="22" text-anchor="middle">Gang 1,91</text>
+        <line x1="0" y1="1590" x2="471" y2="1590" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="300" y="1580" font-size="22" text-anchor="middle">frei 4,71 m</text>
+        <line x1="0" y1="900" x2="91" y2="900" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="46" y="890" font-size="18" text-anchor="middle">0,91</text>
+
+        <text x="600" y="811" font-size="22" text-anchor="middle" transform="rotate(90 600 811)" style="fill:var(--muted)">Ansicht ← von rechter Wand</text>
+      </svg>
+      </div>
+      <div class="legend">
+        <span><i class="lg-old"></i>Bestand</span>
+        <span><i class="lg-new"></i>UMC-500 neu</span>
+        <span><i class="lg-conv"></i>Späneförderer</span>
+        <span><i class="lg-op"></i>Bedienzone 1,0 m</span>
+        <span>▮ Bedienseite</span>
+      </div>
+      <p class="src" style="margin-top:8px">Maße in m: Breite entlang der Wand × Tiefe. Haas-Maschinen 0,91 m vor der Wand und 0,91 m Abstand untereinander (Haas-Wartungsabstand). Hermle ohne Layoutplan. Schaltschrank und Säule geschätzt.</p>
+    </section>
+
+    <div class="side">
+      <section class="sheet verdict" aria-label="Ergebnis">
+        <h2>Ergebnis</h2>
+        <div class="check"><span class="pill ok">passt</span><div><b>Länge an der Wand</b><span class="d">Die vier Maschinen brauchen 12,18 m. Mit 0,91 m Abstand nach Haas sind es 15,21 m. Vor dem Tor bleiben 1,01 m.</span></div></div>
+        <div class="check"><span class="pill ok">passt</span><div><b>Höhe</b><span class="d">Alle Maschinen bleiben unter 3,05 m. Die UMC-500 ist 2,62 m hoch. Am knappsten ist der Kabelschlepp der VM-2 mit 2,996 m.</span></div></div>
+        <div class="check"><span class="pill bad">kritisch</span><div><b>Gang an der UMC-500</b><span class="d">Haas gibt 2,97 m Tiefe an. Mit 0,91 m Wandabstand bleiben 1,20 m Gang. Am Schaltschrank rechts bleiben nur 0,83 m.</span></div></div>
+        <div class="check"><span class="pill ok">passt</span><div><b>Gänge an VF-2SS, VM-2, Hermle</b><span class="d">1,92 m, 1,86 m und 1,91 m. Das reicht zum Bedienen.</span></div></div>
+        <div class="check"><span class="pill warn">offen</span><div><b>Transport UMC-500</b><span class="d">Exportpalette 3,25 × 2,34 × 2,57 m, ca. 5,4 t. Durch die Rampe nur mit der 2,34-m-Seite quer. Tormaße fehlen.</span></div></div>
+      </section>
+
+      <section class="sheet" aria-label="Maße">
+        <h2>Maschinenmaße</h2>
+        <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Maschine</th><th>Breite</th><th>Tiefe</th><th>Höhe Betrieb</th><th>Max. Höhe</th><th>Quelle</th></tr></thead>
+          <tbody>
+            <tr><td>Haas VF-2SS</td><td class="n">3,147 m</td><td class="n">2,249 m</td><td class="n">2,724 m</td><td class="n">2,724 m</td><td class="src">Haas MLD 01/2023</td></tr>
+            <tr><td>Haas VM-2</td><td class="n">3,116 m</td><td class="n">2,311 m</td><td class="n">2,733 m</td><td class="n">2,996 m</td><td class="src">Haas MLD 11/2021</td></tr>
+            <tr class="new"><td><b>Haas UMC-500</b></td><td class="n">2,912 m</td><td class="n">2,965 m</td><td class="n">2,616 m</td><td class="n">2,616 m</td><td class="src">Haas MLD 07/2019 (Suchauszug)</td></tr>
+            <tr><td>Hermle C 600 V</td><td class="n">3,00 m</td><td class="n">2,30 m</td><td class="n">2,70 m</td><td class="n">–</td><td class="src">Inserate, Schätzung</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="src" style="margin-top:6px">VF-2SS und VM-2: Breite mit Späneförderer. UMC-500: Spänauswurf in 0,99 m Höhe. Die Zuordnung von Breite und Tiefe stammt aus einem Textauszug des Haas-Plans. Bitte mit dem PDF prüfen.</p>
+        <h3 style="margin-top:16px">UMC-500 Transport (Händlerangaben)</h3>
+        <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Variante</th><th>Länge</th><th>Breite</th><th>Höhe</th></tr></thead>
+          <tbody>
+            <tr><td>Exportpalette</td><td class="n">3,25 m</td><td class="n">2,34 m</td><td class="n">2,57 m</td></tr>
+            <tr><td>Inlandspalette</td><td class="n">3,25 m</td><td class="n">2,49 m</td><td class="n">2,79 m</td></tr>
+            <tr><td>Gewicht</td><td class="n" colspan="3">ca. 5,4 t (je nach Ausstattung bis 6,1 t)</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="sheet elev-wrap" aria-label="Ansicht">
+    <h2>Ansicht von der rechten Wand</h2>
+    <p class="src" style="margin-bottom:10px">Du stehst an der rechten Wand. Alle Maschinen zeigen mit der Front zu dir. Das Tor ist links.</p>
+    <div class="svg-wrap">
+    <svg viewBox="-110 -95 1810 555" role="img" aria-label="Ansicht der vier Maschinen mit Deckenhöhe">
+      <defs>
+        <marker id="ar2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker>
+      </defs>
+      <!-- Boden y=340, Decke y=35 (3,05 m). x = 1622 - y der Draufsicht -->
+      <rect x="0" y="35" width="1622" height="305" style="fill:var(--hall)"/>
+      <line x1="0" y1="35" x2="1622" y2="35" style="stroke:var(--wall);stroke-width:6"/>
+      <line x1="0" y1="340" x2="1622" y2="340" style="stroke:var(--wall);stroke-width:6"/>
+      <line x1="0" y1="35" x2="0" y2="340" style="stroke:var(--new);stroke-width:4;stroke-dasharray:12 8"/>
+      <line x1="1622" y1="35" x2="1622" y2="340" style="stroke:var(--wall);stroke-width:6"/>
+      <text x="811" y="25" font-size="20" text-anchor="middle" style="fill:var(--muted)">Decke 3,05 m · Unterzüge und Trassen tiefer</text>
+      <text x="8" y="-25" font-size="20">Tor</text>
+      <text x="1614" y="-25" font-size="20" text-anchor="end">Rückwand</text>
+
+      <!-- Hermle x 101–401 -->
+      <rect x="101" y="70" width="300" height="270" style="fill:var(--old-fill);stroke:var(--old);stroke-width:3;stroke-dasharray:10 6"/>
+      <!-- UMC-500 x 492–783 -->
+      <rect x="492" y="78" width="291" height="262" style="fill:var(--new-fill);stroke:var(--new);stroke-width:4"/>
+      <!-- VM-2: Körper 953–1186, Förderer 874–953, Schlepp bis 2,996 -->
+      <rect x="953" y="67" width="233" height="273" style="fill:var(--old-fill);stroke:var(--old);stroke-width:3"/>
+      <rect x="1030" y="40" width="80" height="27" style="fill:none;stroke:var(--old);stroke-width:2;stroke-dasharray:6 4"/>
+      <rect x="874" y="268" width="79" height="72" style="fill:var(--conv);stroke:var(--old);stroke-width:2"/>
+      <!-- VF-2SS: Körper 1360–1592, Förderer 1277–1360 -->
+      <rect x="1360" y="68" width="232" height="272" style="fill:var(--old-fill);stroke:var(--old);stroke-width:3"/>
+      <rect x="1277" y="268" width="83" height="72" style="fill:var(--conv);stroke:var(--old);stroke-width:2"/>
+
+      <g style="fill:none;stroke:var(--old);stroke-width:2">
+        <rect x="150" y="150" width="200" height="110"/>
+        <rect x="985" y="150" width="170" height="110"/>
+        <rect x="1390" y="150" width="172" height="110"/>
+      </g>
+      <rect x="535" y="150" width="205" height="110" style="fill:none;stroke:var(--new);stroke-width:2"/>
+
+      <g class="lbl" font-size="28" text-anchor="middle">
+        <text x="251" y="120">Hermle C 600 V</text>
+        <text x="637" y="125">UMC-500 neu</text>
+        <text x="1070" y="120">VM-2</text>
+        <text x="1476" y="120">VF-2SS</text>
+      </g>
+      <g font-size="20" text-anchor="middle" style="fill:var(--muted)">
+        <text x="251" y="300">H ≈ 2,70</text>
+        <text x="637" y="300">H 2,616</text>
+        <text x="1070" y="290">H 2,733</text>
+        <text x="1070" y="318" font-size="17">Schlepp 2,996</text>
+        <text x="1476" y="300">H 2,724</text>
+      </g>
+
+      <line x1="1670" y1="35" x2="1670" y2="340" style="stroke:var(--ink);stroke-width:1.5" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+      <text transform="translate(1700 188) rotate(-90)" font-size="22" text-anchor="middle">3,05 m</text>
+
+      <g style="stroke:var(--ink);stroke-width:1.5">
+        <line x1="0" y1="380" x2="101" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)" style="stroke:var(--ok)"/>
+        <line x1="101" y1="380" x2="401" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+        <line x1="492" y1="380" x2="783" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+        <line x1="874" y1="380" x2="1186" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+        <line x1="1277" y1="380" x2="1592" y2="380" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+      </g>
+      <g font-size="20" text-anchor="middle">
+        <text x="50" y="410" style="fill:var(--ok)">1,01</text>
+        <text x="251" y="410">3,00</text>
+        <text x="637" y="410">2,91</text>
+        <text x="1030" y="410">3,12</text>
+        <text x="1434" y="410">3,15</text>
+        <text x="811" y="445" style="fill:var(--muted)">Abstände 0,91 m · Gesamt 16,22 m</text>
+      </g>
+    </svg>
+    </div>
+  </section>
+
+  <section class="sheet" aria-label="Umstellung">
+    <h2>Reihenfolge beim Umstellen</h2>
+    <ol>
+      <li>Fahr die Hermle aus dem hinteren Bereich. Stell sie vorübergehend vorne oder draußen ab.</li>
+      <li>Stell die VF-2SS ganz nach hinten.</li>
+      <li>Stell die VM-2 direkt daneben.</li>
+      <li>Bring die UMC-500 ein und stell sie neben die VM-2.</li>
+      <li>Stell die Hermle zuletzt vorne am Tor auf.</li>
+    </ol>
+    <p class="src" style="margin-top:8px">Grund: Jede Maschine muss am Gang vorbei. Hinten zuerst, dann blockiert keine Maschine den Weg.</p>
+  </section>
+
+  <section class="sheet" aria-label="Offene Punkte">
+    <h2>Das fehlt noch</h2>
+    <ol>
+      <li>Lad mir den Haas-Layoutplan der UMC-500 hoch. Dann prüfe ich Breite und Tiefe genau.</li>
+      <li>Miss, wo der Schaltschrank rechts genau steht. Davon hängt der Gang an der UMC-500 ab.</li>
+      <li>Miss das Tor zur Halle: lichte Breite und lichte Höhe.</li>
+      <li>Miss die Hermle: Breite, Tiefe, Höhe.</li>
+      <li>Prüf die Säule links vorne neben der Hermle.</li>
+    </ol>
+  </section>
+
+  <p class="src">Quellen: Haas Machine Layout Drawings VF-2/VF-2SS (01/2023), VM-2 (11/2021), UMC-500 (07/2019, Suchauszug). UMC-500 Transport, Gewicht und Hermle: Händlerinserate.</p>
+</div>
