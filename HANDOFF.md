@@ -275,7 +275,8 @@ Idee: Wir bauen Betrieben ohne Website vorab eine einfache Seite und bieten sie 
 - Listen kommen als Markdown nach Google Drive, sortiert nach Berufsgruppe, Ort und Umkreis.
 
 ### Stand
-- Liste: 100 Betriebe im 25-km-Umkreis von Dortmund (noch nicht in Drive abgelegt).
+- Listen: 234 Betriebe in 18 Markdown-Listen in Google Drive, Ordner „Website-Akquise/Listen“ (4 Gruppen): https://drive.google.com/drive/folders/1Ah0FGw4Xj21yz1Vk60bFVOzUNDE2_uck
+- Erster Test-Entwurf: Maler Tacken, `websites/kunden/maler-tacken/index.html` (nicht veröffentlicht, Texte unbestätigt).
 - Vorlage Maler: `websites/vorlagen/maler/index.html` (Musterbetrieb „Mustermann“, eine Datei, ohne Build).
 
 ### Offen
