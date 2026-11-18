@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Malerbetrieb Tacken</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: ruhige Spalte, max. 1120px. Hero zweispaltig: Aussage links, Raum mit Farbfächer rechts.
+   Abschnittsmarken sehen aus wie Streifen Malerkrepp. Fette Geste nur im Hero. */
+:root{
+  --bg:#F4F5F7; --surface:#FFFFFF; --ink:#13262B; --muted:#52666A; --line:#D7DFDD;
+  --accent:#1E4F8A; --on-accent:#FFFFFF; --tape:#FF9A5A; --on-tape:#2B1203;
+  --wall:#7E9CB5; --room-floor:#C9A77E; --room-board:#F4F1EA; --room-sofa:#3A3F52; --room-sofa2:#4A5068;
+  --room-frame:#F9F7F2; --room-sky:#DDEBF2; --room-lamp:#1E2F34; --room-plant:#3E7A55; --room-pot:#D9D2C4;
+  --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0E191C; --surface:#152429; --ink:#EAF1EF; --muted:#9BB0B0; --line:#25393E;
+  --accent:#86B8F2; --on-accent:#0A1626; --tape:#FF9A5A; --on-tape:#2B1203; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0E191C; --surface:#152429; --ink:#EAF1EF; --muted:#9BB0B0; --line:#25393E;
+  --accent:#86B8F2; --on-accent:#0A1626; --tape:#FF9A5A; --on-tape:#2B1203; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-0.01em}
+h1{font-size:clamp(2.4rem,6.2vw,4.4rem);font-weight:800}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:700;line-height:1.25}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--tape);outline-offset:3px;border-radius:6px}
+
+/* Kopf */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.logo svg{flex:none}
+.logo b{font-family:var(--display);font-weight:800;font-size:1.1rem;line-height:1.05;display:block}
+.logo small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+nav{display:flex;gap:22px;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:var(--on-accent);
+  font:600 1rem var(--body);padding:13px 22px;border-radius:999px;border:0;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.sm{padding:9px 16px;font-size:.92rem}
+@media (max-width:760px){ nav{display:none} }
+
+/* Malerkrepp-Marke */
+.tape{display:inline-block;background:var(--tape);color:var(--on-tape);font:600 .74rem var(--body);letter-spacing:.12em;text-transform:uppercase;
+  padding:5px 14px;transform:rotate(-1.5deg);
+  clip-path:polygon(0 0,100% 0,calc(100% - 5px) 25%,100% 50%,calc(100% - 5px) 75%,100% 100%,0 100%,5px 75%,0 50%,5px 25%)}
+
+/* Hero */
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,64px);align-items:center;padding-block:clamp(36px,7vw,84px)}
+.hero-text{display:flex;flex-direction:column;gap:22px;align-items:flex-start;min-width:0}
+.hero-text .lead{font-size:1.15rem;color:var(--muted);max-width:34em}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;list-style:none;padding:0;margin:0;font-size:.95rem;color:var(--muted)}
+.facts li{display:flex;align-items:center;gap:8px}
+.facts li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none}
+.room{min-width:0;display:flex;flex-direction:column;gap:14px}
+.room svg{width:100%;height:auto;display:block;border-radius:var(--r);border:1px solid var(--line)}
+#wall{transition:fill .5s ease}
+@media (prefers-reduced-motion:reduce){ #wall{transition:none} html{scroll-behavior:auto} }
+.fan{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.fan span{font-size:.9rem;color:var(--muted);margin-right:4px}
+.fan span b{color:var(--ink);font-weight:600}
+.chip{width:38px;height:38px;border-radius:10px;border:2px solid var(--surface);box-shadow:0 0 0 1.5px var(--line);cursor:pointer;padding:0}
+.chip[aria-pressed="true"]{box-shadow:0 0 0 2.5px var(--ink)}
+@media (max-width:860px){ .hero .wrap{grid-template-columns:1fr} }
+
+/* Abschnitte */
+section{scroll-margin-top:80px}
+.sec .wrap{padding-block:clamp(40px,7vw,80px);display:flex;flex-direction:column;gap:30px}
+.sec-head{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.sec-head p{color:var(--muted);max-width:40em}
+.band{background:var(--surface);border-block:1px solid var(--line)}
+
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.services article{background:var(--surface);padding:26px 24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.services svg{color:var(--accent)}
+.services p{color:var(--muted);font-size:.97rem}
+@media (max-width:860px){ .services{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:540px){ .services{grid-template-columns:1fr} }
+
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s}
+.steps li{counter-increment:s;display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--ink);padding-top:16px;min-width:0}
+.steps li::before{content:counter(s);font:800 2.2rem/1 var(--display);color:var(--accent)}
+.steps p{color:var(--muted);font-size:.97rem}
+@media (max-width:860px){ .steps{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:480px){ .steps{grid-template-columns:1fr} }
+
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,5vw,64px);align-items:start}
+.about > div{display:flex;flex-direction:column;gap:16px;min-width:0}
+.about p{max-width:36em}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px;font-size:.97rem}
+dt{color:var(--muted)} dd{margin:0;font-weight:500}
+.towns{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.towns li{border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:.92rem;background:var(--surface)}
+@media (max-width:860px){ .about{grid-template-columns:1fr} }
+
+.contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(24px,5vw,64px);align-items:start}
+.contact > div{display:flex;flex-direction:column;gap:18px;min-width:0}
+.mailrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.mailrow code{font:500 1.02rem var(--body);user-select:all;overflow-wrap:anywhere}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3vw,30px);min-width:0}
+label{display:flex;flex-direction:column;gap:6px;font-size:.9rem;font-weight:500;min-width:0}
+label.full,form .full{grid-column:1/-1}
+input,select,textarea{font:400 1rem var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 13px;width:100%}
+textarea{min-height:110px;resize:vertical}
+.note{font-size:.9rem;color:var(--muted)}
+#sent{background:var(--tape);color:var(--on-tape);border-radius:10px;padding:12px 14px;font-size:.95rem}
+@media (max-width:860px){ .contact{grid-template-columns:1fr} }
+@media (max-width:480px){ form{grid-template-columns:1fr} }
+
+footer .wrap{padding-block:28px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.88rem;color:var(--muted)}
+.draft{background:var(--ink);color:var(--bg);font-size:.85rem;text-align:center}.draft .wrap{padding-block:7px}
+</style>
+</head>
+<body>
+
+<div class="draft"><div class="wrap">Entwurf – diese Seite ist eine Vorschau und nicht veröffentlicht.</div></div>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#start" aria-label="Malerbetrieb Tacken, Startseite">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="10" fill="var(--accent)"/>
+        <path d="M10 13h20M20 13v17" fill="none" stroke="var(--tape)" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <span><b>Tacken</b><small>Maler- und Lackierbetrieb</small></span>
+    </a>
+    <nav aria-label="Seitenbereiche">
+      <a href="#leistungen">Leistungen</a><a href="#ablauf">Ablauf</a><a href="#betrieb">Betrieb</a><a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="btn sm" href="#kontakt">Angebot anfragen</a>
+  </div>
+</header>
+
+<main id="start">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="tape">Maler- und Lackierbetrieb in Dortmund-Hörde</span>
+      <h1>Frische Farbe für Hörde und ganz Dortmund.</h1>
+      <p class="lead">Matthias Tacken streicht, tapeziert und lackiert in Wohnung, Haus und Büro. Auch Ihre Fassade bekommt bei uns einen neuen Anstrich.</p>
+      <div class="cta">
+        <a class="btn" href="#kontakt">Angebot anfragen</a>
+        <a class="btn ghost" href="#leistungen">Leistungen ansehen</a>
+      </div>
+      <ul class="facts">
+        <li>Mo–Do 8–17 Uhr</li><li>Fr 8–13 Uhr</li><li>Eckardtstr. 11, Hörde</li>
+      </ul>
+    </div>
+
+    <div class="room">
+      <svg viewBox="0 0 560 400" role="img" aria-label="Zimmer mit Sofa. Die Wandfarbe wechselt mit der Auswahl darunter.">
+        <rect id="wall" x="0" y="0" width="560" height="300" fill="var(--wall)"/>
+        <rect x="0" y="300" width="560" height="100" fill="var(--room-floor)"/>
+        <rect x="0" y="292" width="560" height="10" fill="var(--room-board)"/>
+        <!-- Fenster -->
+        <rect x="52" y="52" width="130" height="150" rx="4" fill="var(--room-frame)"/>
+        <rect x="62" y="62" width="50" height="130" fill="var(--room-sky)"/>
+        <rect x="122" y="62" width="50" height="130" fill="var(--room-sky)"/>
+        <!-- Bild -->
+        <rect x="262" y="78" width="96" height="70" rx="3" fill="var(--room-frame)"/>
+        <rect x="272" y="88" width="76" height="50" fill="var(--room-sofa2)"/>
+        <circle cx="328" cy="104" r="9" fill="var(--tape)"/>
+        <!-- Stehlampe -->
+        <rect x="470" y="150" width="5" height="170" fill="var(--room-lamp)"/>
+        <path d="M446 150h53l-12-48h-29z" fill="var(--room-frame)"/>
+        <rect x="452" y="318" width="42" height="6" rx="3" fill="var(--room-lamp)"/>
+        <!-- Sofa -->
+        <rect x="212" y="206" width="216" height="70" rx="14" fill="var(--room-sofa)"/>
+        <rect x="196" y="236" width="248" height="62" rx="14" fill="var(--room-sofa2)"/>
+        <rect x="222" y="296" width="10" height="20" fill="var(--room-lamp)"/>
+        <rect x="408" y="296" width="10" height="20" fill="var(--room-lamp)"/>
+        <rect x="240" y="216" width="56" height="40" rx="8" fill="var(--tape)"/>
+        <!-- Pflanze -->
+        <path d="M98 318c-22-40-18-70 0-92 18 22 22 52 0 92z" fill="var(--room-plant)"/>
+        <path d="M98 318c-38-18-50-42-46-66 26 6 44 28 46 66z" fill="var(--room-plant)"/>
+        <path d="M98 318c38-18 50-42 46-66-26 6-44 28-46 66z" fill="var(--room-plant)"/>
+        <path d="M74 316h48l-7 46H81z" fill="var(--room-pot)"/>
+      </svg>
+      <div class="fan" role="group" aria-label="Wandfarbe ausprobieren">
+        <span>Wandfarbe: <b id="wallname">Taubenblau</b></span>
+        <button class="chip" type="button" style="background:#A9BFA8" data-c="#A9BFA8" data-n="Salbei" aria-pressed="false" aria-label="Salbei"></button>
+        <button class="chip" type="button" style="background:#E3D5C0" data-c="#E3D5C0" data-n="Sandstein" aria-pressed="false" aria-label="Sandstein"></button>
+        <button class="chip" type="button" style="background:#C7CED3" data-c="#C7CED3" data-n="Nebelgrau" aria-pressed="false" aria-label="Nebelgrau"></button>
+        <button class="chip" type="button" style="background:#E2A08B" data-c="#E2A08B" data-n="Koralle" aria-pressed="false" aria-label="Koralle"></button>
+        <button class="chip" type="button" style="background:#7E9CB5" data-c="#7E9CB5" data-n="Taubenblau" aria-pressed="true" aria-label="Taubenblau"></button>
+        <button class="chip" type="button" style="background:#F5F3EE" data-c="#F5F3EE" data-n="Altweiß" aria-pressed="false" aria-label="Altweiß"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec band" id="leistungen">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tape">Leistungen</span>
+      <h2>Streichen, Tapezieren, Lackieren, Fassade</h2>
+      <p>Vom einzelnen Zimmer bis zum ganzen Haus. Sagen Sie uns, was ansteht.</p>
+    </div>
+    <div class="services">
+      <article>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="15" height="6" rx="1.5"/><path d="M18 6h3v6h-9v3"/><rect x="10.5" y="15" width="3" height="6" rx="1"/></svg>
+        <h3>Innenanstrich</h3><p>Wände und Decken in Wohnung, Haus und Büro. Deckend, gleichmäßig und mit sauberen Kanten.</p>
+      </article>
+      <article>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V10l9-7 9 7v11"/><path d="M9 21v-7h6v7"/></svg>
+        <h3>Fassadenarbeiten</h3><p>Neuer Anstrich für Ihre Fassade. Das Haus ist wieder geschützt und sieht gepflegt aus.</p>
+      </article>
+      <article>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h11v15a3 3 0 0 0 3 3H8a3 3 0 0 1-3-3z"/><path d="M16 18a3 3 0 0 0 3 3 3 3 0 0 0 3-3h-6"/></svg>
+        <h3>Tapezieren</h3><p>Neue Tapeten für einzelne Wände oder ganze Räume. Sauber auf Stoß geklebt.</p>
+      </article>
+      <article>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="1.5"/><path d="M15 12h.01"/></svg>
+        <h3>Lackierarbeiten</h3><p>Türen, Zargen, Fenster und Heizkörper bekommen einen neuen, glatten Lack.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="ablauf">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tape">Ablauf</span>
+      <h2>In vier Schritten zum fertigen Raum</h2>
+    </div>
+    <ol class="steps">
+      <li><h3>Anfrage</h3><p>Sie schreiben uns oder rufen an. Sagen Sie kurz, was gemacht werden soll.</p></li>
+      <li><h3>Besichtigung</h3><p>Wir sehen uns die Räume oder die Fassade vor Ort an und messen aus.</p></li>
+      <li><h3>Angebot</h3><p>Sie bekommen ein schriftliches Angebot mit Preis und Termin.</p></li>
+      <li><h3>Ausführung</h3><p>Wir decken Möbel und Böden ab und führen die Arbeiten aus.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec band" id="betrieb">
+  <div class="wrap">
+    <div class="about">
+      <div>
+        <span class="tape" style="align-self:flex-start">Der Betrieb</span>
+        <h2>Ihr Maler aus Hörde</h2>
+        <p>Der Maler- und Lackierbetrieb Matthias Tacken sitzt in der Eckardtstraße in Dortmund-Hörde. Von hier aus arbeiten wir im ganzen Stadtgebiet.</p>
+        <p>Sie erreichen uns montags bis donnerstags von 8 bis 17 Uhr und freitags von 8 bis 13 Uhr.</p>
+        <h3 style="margin-top:8px">Hier sind wir für Sie unterwegs</h3>
+        <ul class="towns">
+          <li>Hörde</li><li>Benninghofen</li><li>Berghofen</li><li>Wellinghofen</li><li>Schüren</li><li>Aplerbeck</li><li>ganz Dortmund</li>
+        </ul>
+      </div>
+      <div class="card">
+        <dl>
+          <dt>Inhaber</dt><dd>Matthias Tacken</dd>
+          <dt>Anschrift</dt><dd>Eckardtstr. 11<br>44263 Dortmund-Hörde</dd>
+          <dt>Telefon</dt><dd>0171 2 05 74 82</dd>
+          <dt>Zeiten</dt><dd>Mo–Do 8–17 Uhr<br>Fr 8–13 Uhr</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="kontakt">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <span class="tape" style="align-self:flex-start">Kontakt</span>
+        <h2>Was sollen wir für Sie streichen?</h2>
+        <p style="color:var(--muted)">Schreiben Sie uns ein paar Zeilen oder rufen Sie an: 0171 2 05 74 82. Wir vereinbaren einen Termin zur Besichtigung.</p>
+        <div class="mailrow">
+          <code id="mail">malertacken@t-online.de</code>
+          <button class="btn ghost sm" type="button" id="copy">Adresse kopieren</button>
+        </div>
+        <p class="note">Eckardtstr. 11, 44263 Dortmund-Hörde</p>
+      </div>
+      <form id="form" novalidate>
+        <label>Ihr Name<input id="f-name" name="name" autocomplete="name" required></label>
+        <label>Telefon oder E-Mail<input id="f-contact" name="contact" required></label>
+        <label class="full">Worum geht es?
+          <select id="f-topic" name="topic">
+            <option>Innenanstrich</option><option>Fassadenarbeiten</option><option>Tapezieren</option>
+            <option>Lackierarbeiten</option><option>Etwas anderes</option>
+          </select>
+        </label>
+        <label class="full">Ihre Nachricht<textarea id="f-msg" name="msg" placeholder="Zum Beispiel: 3 Zimmer, ca. 70 m², Wände und Decken weiß."></textarea></label>
+        <div class="full" style="display:flex;flex-wrap:wrap;align-items:center;gap:14px">
+          <button class="btn" type="submit">Anfrage senden</button>
+          <span class="note">Ihre Anfrage ist unverbindlich.</span>
+        </div>
+        <p class="full" id="sent" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Maler- und Lackierbetrieb Matthias Tacken · Eckardtstr. 11 · 44263 Dortmund</span>
+    <span>Impressum · Datenschutz</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var wall=document.getElementById('wall'), name=document.getElementById('wallname');
+  var chips=[].slice.call(document.querySelectorAll('.chip'));
+  chips.forEach(function(c){ c.addEventListener('click',function(){
+    chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+    c.setAttribute('aria-pressed','true');
+    wall.style.fill=c.dataset.c; name.textContent=c.dataset.n;
+  });});
+
+  var copy=document.getElementById('copy'), mail=document.getElementById('mail');
+  copy.addEventListener('click',function(){
+    var done=function(){copy.textContent='Kopiert';setTimeout(function(){copy.textContent='Adresse kopieren'},1800)};
+    var sel=function(){var r=document.createRange();r.selectNodeContents(mail);var s=getSelection();s.removeAllRanges();s.addRange(r)};
+    try{ navigator.clipboard.writeText(mail.textContent).then(done,sel) }catch(e){ sel() }
+  });
+
+  var form=document.getElementById('form'), sent=document.getElementById('sent');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=document.getElementById('f-name'), k=document.getElementById('f-contact');
+    if(!n.value.trim()||!k.value.trim()){
+      sent.textContent='Bitte tragen Sie Ihren Namen und eine Telefonnummer oder E-Mail-Adresse ein.';
+      sent.hidden=false; (n.value.trim()?k:n).focus(); return;
+    }
+    sent.textContent='Vorschau: Auf der fertigen Seite geht diese Anfrage direkt an das Postfach des Betriebs.';
+    sent.hidden=false;
+  });
+})();
+</script>
+</body>
+</html>
