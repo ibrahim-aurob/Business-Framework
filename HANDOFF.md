@@ -257,3 +257,28 @@ AUROB-Framework-Handoff/
 ├── repo-doku/                  # vercel-labs/skills: README, AGENTS, LICENSE, find-skills/SKILL.md
 └── obsidian-demo-verworfen/    # erste Demo, nur zur Referenz
 ```
+
+---
+
+## 10. Nebenprojekt: Website-Akquise für Handwerker (Stand 18.11.2026)
+
+Idee: Wir bauen Betrieben ohne Website vorab eine einfache Seite und bieten sie zum Festpreis an.
+
+### Entscheidungen
+- Zielgruppe: Handwerksbetriebe ohne Website, mit E-Mail-Adresse. Quelle: Gelbe Seiten, Umkreissuche.
+- Erstkontakt: Anruf mit Frage „Darf ich den Link per Mail schicken?“. Danach Mail. Zusage mit Datum notieren.
+- Preis: 590 € netto einmalig. Betreuung 25,99 € pro Monat (Domain, Hosting, kleine Änderungen).
+- Preis steht direkt in der ersten Mail. Maximal 2 Follow-ups. Angebot gilt wenige Tage.
+- Vorschau ohne eigene Domain. Die Domain kaufen wir erst nach Zahlung.
+- Seiten ohne Fotos: Typografie, Farben, Icons, eigenes Logo.
+- Zahlung per Stripe, Vorkasse.
+- Listen kommen als Markdown nach Google Drive, sortiert nach Berufsgruppe, Ort und Umkreis.
+
+### Stand
+- Liste: 100 Betriebe im 25-km-Umkreis von Dortmund (noch nicht in Drive abgelegt).
+- Vorlage Maler: `websites/vorlagen/maler/index.html` (Musterbetrieb „Mustermann“, eine Datei, ohne Build).
+
+### Offen
+- Hosting-Setup und Kosten (Vercel Pro oder Alternative).
+- Akquise-Mail-Adresse, Mail-Text, Angebot und Vertrag (inkl. Auftragsverarbeitung).
+- Funktionen der Maler-Vorlage mit Ibrahim abstimmen.
